@@ -22,6 +22,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatTableModule}  from '@angular/material/table';
 import { AppRoutingModule } from './app-routing.module';
 import { CustomerListComponent } from './customer-list/customer-list.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { CustomerListComponent } from './customer-list/customer-list.component';
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     ),
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
