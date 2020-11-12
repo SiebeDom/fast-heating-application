@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Customer } from '../customer';
 import { CustomerService } from '../customer.service';
 
@@ -19,22 +20,40 @@ export class CustomerFormComponent {
     address2: null,
     city: [null, Validators.required],
     postalCode: [null, Validators.compose([
-      Validators.required, Validators.minLength(5), Validators.maxLength(5)])
+      Validators.required, Validators.minLength(4), Validators.maxLength(4)])
     ],
-    shipping: ['free', Validators.required]
   });
 
   customer: Customer;
 
   hasUnitNumber = false;
 
-  constructor(private fb: FormBuilder, private customerService: CustomerService) {
-    this.customer = new Customer();
+  constructor(
+    private fb: FormBuilder,
+    private customerService: CustomerService,
+    private route: ActivatedRoute) {
   }
 
-  add(): void {
-    console.log(this.customer);
-    this.customerService.addCustomer(this.customer)
-      .subscribe();
+  ngOnInit(): void {
+    let id = this.route.snapshot.paramMap.get('id');
+    //Edit mode
+    if (id != null) {
+      this.customerService.getcustomer(+id).subscribe(customer => this.customer = customer);
+    } else {//Create mode
+      this.customer = new Customer();
+    }
+  }
+
+  save(): void {
+    //Edit mode
+    if (this.customer.id != null) {
+      this.customerService.updatecustomer(this.customer).subscribe();
+    } else {//Create mode
+      this.customerService.addCustomer(this.customer).subscribe();    
+    }
+  }
+
+  delete(): void {
+    this.customerService.deletecustomer(this.customer).subscribe();
   }
 }
