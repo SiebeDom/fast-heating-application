@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Customer } from '../customer';
 import { CustomerService } from '../customer.service';
 import { CustomerListDataSource } from './customer-list-datasource';
@@ -20,7 +21,9 @@ export class CustomerListComponent implements AfterViewInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'firstName', 'lastName'];
 
-  constructor(private customerService: CustomerService) {
+  constructor(
+    private customerService: CustomerService,
+    private router: Router) {
     this.customerService = customerService;
   }
 
@@ -32,6 +35,10 @@ export class CustomerListComponent implements AfterViewInit {
         this.dataSource.paginator = this.paginator;
         this.table.dataSource = this.dataSource;
       });
+  }
+
+  selectCustomer(row: any) {
+    this.router.navigate(['/customer/' + row.id]);
   }
 
   ngAfterViewInit() {

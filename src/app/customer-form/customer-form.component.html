@@ -1,5 +1,5 @@
-<form [formGroup]="addressForm" novalidate (ngSubmit)="add()">
-  <mat-card class="shipping-card">
+<form [formGroup]="addressForm">
+  <mat-card>
     <mat-card-header>
       <mat-card-title>Klant informatie</mat-card-title>
     </mat-card-header>
@@ -96,7 +96,8 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">Bewaar</button>
+      <button mat-raised-button color="primary" (click)="save()">Bewaar</button>
+      <button mat-raised-button color="basic" (click)="delete()">Verwijder</button>
     </mat-card-actions>
   </mat-card>
 </form>
