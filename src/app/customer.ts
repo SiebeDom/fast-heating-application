@@ -11,7 +11,7 @@ export class Customer {
   companyName?: string;
   street: string;
   houseNumber: string;
-  busNumber?: string;
+  boxNumber?: string;
   postalCode: string;
   city: string;
   phone?: string;

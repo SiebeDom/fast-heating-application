@@ -24,6 +24,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { CustomerFormComponent } from './customer-form/customer-form.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,6 +36,7 @@ import { MatSortModule } from '@angular/material/sort';
     DashboardComponent,
     NavigationComponent,
     CustomerListComponent,
+    CustomerFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +58,10 @@ import { MatSortModule } from '@angular/material/sort';
     ),
     MatPaginatorModule,
     MatSortModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

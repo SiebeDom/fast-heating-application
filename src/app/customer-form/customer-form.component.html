@@ -1,0 +1,102 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="add()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Klant informatie</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-radio-group disabled>
+            <mat-radio-button value="1" checked='true'>Particulier</mat-radio-button>
+            <mat-radio-button value="2">Bedrijf</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Voornaam" formControlName="firstName" [(ngModel)]="customer.firstName">
+            <mat-error *ngIf="addressForm.controls['firstName'].hasError('required')">
+              Voornaam is <strong>verplicht</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Achternaam" formControlName="lastName" [(ngModel)]="customer.lastName">
+            <mat-error *ngIf="addressForm.controls['lastName'].hasError('required')">
+              Achternaam is <strong>verplicht</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Straat" formControlName="street" [(ngModel)]="customer.street">
+            <mat-error *ngIf="addressForm.controls['street'].hasError('required')">
+              Straat is <strong>verplicht</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Huisnummer" formControlName="houseNumber" [(ngModel)]="customer.houseNumber">
+                <mat-error *ngIf="addressForm.controls['houseNumber'].hasError('required')">
+                  Huisnummer is <strong>verplicht</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Busnummer" formControlName="boxNumber" [(ngModel)]="customer.boxNumber">
+                <mat-error *ngIf="addressForm.controls['boxNumber'].hasError('required')">
+                  Bus nummer is <strong>verplicht</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput #postalCode maxlength="4" placeholder="Postcode" type="number"
+              formControlName="postalCode" [(ngModel)]="customer.postalCode">
+            <mat-hint align="end">{{postalCode.value.length}} / 4</mat-hint>
+            <mat-error *ngIf="addressForm.controls['postalCode'].hasError('required')">
+              Postcode is <strong>verplicht</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Gemeente" formControlName="city" [(ngModel)]="customer.city">
+            <mat-error *ngIf="addressForm.controls['city'].hasError('required')">
+              Gemeente is <strong>verplicht</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row" *ngIf="!hasUnitNumber">
+        <div class="col">
+          <button mat-button type="button" (click)="hasUnitNumber = !hasUnitNumber" disabled>
+            + Voeg contact gegevens toe
+          </button>
+        </div>
+      </div>
+      <div class="row" *ngIf="hasUnitNumber">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Address 2" formControlName="address2"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Bewaar</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
