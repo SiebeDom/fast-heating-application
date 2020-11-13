@@ -29,6 +29,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { InvoiceFormComponent } from './invoice-form/invoice-form.component';
+import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavigationComponent,
     CustomerListComponent,
     CustomerFormComponent,
+    InvoiceFormComponent,
+    CustomerDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,6 +67,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     MatRadioModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
