@@ -25,3 +25,9 @@ mat-card {
 .col:last-child {
   margin-right: 0;
 }
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
