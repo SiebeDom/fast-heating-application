@@ -1,7 +1,13 @@
-<form [formGroup]="addressForm">
+<form [formGroup]="addressForm" (ngSubmit)="save()">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Klant informatie</mat-card-title>
+      <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="delete()">Remove</button>
+      </mat-menu>
     </mat-card-header>
     <mat-card-content>
       <div class="row">
@@ -96,8 +102,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="save()">Bewaar</button>
-      <button mat-raised-button color="basic" (click)="delete()">Verwijder</button>
+      <button mat-raised-button color="primary" type="submit">Bewaar</button>
     </mat-card-actions>
   </mat-card>
 </form>
