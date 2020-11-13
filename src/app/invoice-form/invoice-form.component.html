@@ -1,25 +1,125 @@
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>Klant informatie</mat-card-title>
-        <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-            <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu" xPosition="before">
-            <button mat-menu-item>Bewerk</button>
-        </mat-menu>
-    </mat-card-header>
-    <mat-card-content>
-        <mat-form-field appearance="fill">
-            <mat-label>Select a customer</mat-label>
-            <mat-select (selectionChange)="selectCustomer($event)" name="customer">
-                <mat-option *ngFor="let customer of customers" [value]="customer.id">
-                    {{customer.lastName}} {{customer.firstName}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <app-customer-detail [customer]="invoice.customer"></app-customer-detail>
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-button color="primary">Nieuwe klant</button>
-    </mat-card-actions>
-</mat-card>
+<form [formGroup]="invoiceForm">
+    <mat-card>
+        <mat-card-content>
+            <div>
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Factuur nummer" disabled>
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Value binding</mat-label>
+                            <input matInput [matDatepicker]="picker3" formControlName="date" [(ngModel)]="invoice.date">
+                            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                            <mat-datepicker #picker3></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    <mat-card>
+        <mat-card-header>
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item>Bewerk</button>
+            </mat-menu>
+        </mat-card-header>
+        <mat-card-content>
+            <div>
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Selecteer een klant</mat-label>
+                            <mat-select (selectionChange)="selectCustomer($event)" name="customer">
+                                <mat-option *ngFor="let customer of customers" [value]="customer.id">
+                                    {{customer.lastName}} {{customer.firstName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <button mat-button color="primary">Nieuwe klant</button>
+                    </div>
+                </div>
+            </div>
+            <app-customer-detail [customer]="invoice.customer"></app-customer-detail>
+        </mat-card-content>
+    </mat-card>
+    <mat-card>
+        <mat-card-content>
+            <mat-form-field class="full-width">
+                <mat-label>Beschrijving van de werken</mat-label>
+                <textarea matInput placeholder="Plaatsing ..." matInput rows="5"></textarea>
+            </mat-form-field>
+        </mat-card-content>
+    </mat-card>
+    <mat-card>
+        <mat-card-content>
+            <div>
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field class="full-width">
+                            <mat-label>Voorwaarden</mat-label>
+                            <textarea matInput placeholder="Medecontractant ..." matInput rows="4"></textarea>
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <div>
+                            <div class="row">
+                                <div class="col">
+                                    <mat-form-field class="full-width">
+                                        <input matInput placeholder="Totaal excl. BTW" formControlName="subTotal"
+                                            [(ngModel)]="invoice.subTotal">
+                                        <mat-error *ngIf="invoiceForm.controls['subTotal'].hasError('required')">
+                                            Subtotaal is <strong>verplicht</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="full-width">
+                                    <div class="row">
+                                        <div class="col">
+                                            <mat-form-field class="full-width">
+                                                <input matInput placeholder="BTW" formControlName="vatRate"
+                                                    [(ngModel)]="invoice.vatRate">
+                                                <mat-error *ngIf="invoiceForm.controls['vatRate'].hasError('required')">
+                                                    BTW percentage is <strong>verplicht</strong>
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col">
+                                            <mat-form-field class="full-width">
+                                                <input matInput placeholder="BTW bedrag" formControlName="vatAmount"
+                                                    [(ngModel)]="invoice.vatAmount">
+                                                <mat-error *ngIf="invoiceForm.controls['vatAmount'].hasError('required')">
+                                                    BTW bedrag is <strong>verplicht</strong>
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <mat-form-field class="full-width">
+                                        <input matInput placeholder="Totaal incl. BTW" formControlName="total"
+                                            [(ngModel)]="invoice.total">
+                                        <mat-error *ngIf="invoiceForm.controls['total'].hasError('required')">
+                                            Totaal is <strong>verplicht</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</form>

@@ -17,6 +17,7 @@ export class Invoice {
   total: number;
 
   constructor() {
+    this.date = new Date();
     this.customer = new Customer();
   }
 }

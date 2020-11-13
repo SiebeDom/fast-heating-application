@@ -3,6 +3,7 @@ import { Customer } from '../customer';
 import { CustomerService } from '../customer.service';
 import { Invoice } from '../invoice';
 import { InvoiceService } from '../invoice.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-invoice-form',
@@ -12,8 +13,16 @@ import { InvoiceService } from '../invoice.service';
 export class InvoiceFormComponent implements OnInit {
   customers: Customer[];
   invoice: Invoice = new Invoice();
+  invoiceForm = this.fb.group({
+    date: [null, Validators.required],
+    subTotal: [null, Validators.required],
+    vatRate: [null, Validators.required],
+    vatAmount: [null, Validators.required],
+    total: [null, Validators.required],
+  });
 
   constructor(
+    private fb: FormBuilder,
     private customerService: CustomerService,
     private invoiceService: InvoiceService) { }
 
