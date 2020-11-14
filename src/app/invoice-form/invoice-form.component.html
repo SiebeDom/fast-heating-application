@@ -5,13 +5,13 @@
                 <div class="row">
                     <div class="col">
                         <mat-form-field class="full-width">
-                            <input matInput placeholder="Factuur nummer" disabled>
+                            <input matInput placeholder="Factuur nummer" formControlName="id">
                         </mat-form-field>
                     </div>
                     <div class="col">
                         <mat-form-field appearance="fill">
-                            <mat-label>Value binding</mat-label>
-                            <input matInput [matDatepicker]="picker3" formControlName="date" [(ngModel)]="invoice.date">
+                            <mat-label>Factuur datum</mat-label>
+                            <input matInput [matDatepicker]="picker3" formControlName="date">
                             <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                             <mat-datepicker #picker3></mat-datepicker>
                         </mat-form-field>
@@ -35,7 +35,7 @@
                     <div class="col">
                         <mat-form-field appearance="fill">
                             <mat-label>Naam klant</mat-label>
-                            <mat-select (selectionChange)="selectCustomer($event)" name="customer">
+                            <mat-select (selectionChange)="selectCustomer($event)" name="customer" formControlName="customerId">
                                 <mat-option *ngFor="let customer of customers" [value]="customer.id">
                                     {{customer.lastName}} {{customer.firstName}}
                                 </mat-option>
@@ -54,7 +54,7 @@
         <mat-card-content>
             <mat-form-field class="full-width">
                 <mat-label>Beschrijving van de werken</mat-label>
-                <textarea matInput placeholder="Plaatsing ..." matInput rows="10"></textarea>
+                <textarea matInput placeholder="Plaatsing ..." matInput rows="10" formControlName="description"></textarea>
             </mat-form-field>
         </mat-card-content>
     </mat-card>
@@ -65,7 +65,8 @@
                     <div class="col">
                         <mat-form-field class="full-width">
                             <mat-label>Voorwaarden</mat-label>
-                            <textarea matInput placeholder="Medecontractant ..." matInput rows="4"></textarea>
+                            <textarea matInput placeholder="Medecontractant ..." matInput rows="4"
+                                formControlName="conditions"></textarea>
                         </mat-form-field>
                         <button mat-raised-button color="primary" type="submit">Bewaar</button>
                     </div>
@@ -74,8 +75,7 @@
                             <div class="row">
                                 <div class="col">
                                     <mat-form-field class="full-width">
-                                        <input matInput placeholder="Totaal excl. BTW" formControlName="subTotal"
-                                            [(ngModel)]="invoice.subTotal">
+                                        <input matInput placeholder="Totaal excl. BTW" formControlName="subTotal">
                                         <mat-error *ngIf="invoiceForm.controls['subTotal'].hasError('required')">
                                             Subtotaal is <strong>verplicht</strong>
                                         </mat-error>
@@ -87,8 +87,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <mat-form-field class="full-width">
-                                                <input matInput placeholder="BTW" formControlName="vatRate"
-                                                    [(ngModel)]="invoice.vatRate">
+                                                <input matInput placeholder="BTW" formControlName="vatRate">
                                                 <mat-error *ngIf="invoiceForm.controls['vatRate'].hasError('required')">
                                                     BTW percentage is <strong>verplicht</strong>
                                                 </mat-error>
@@ -96,9 +95,9 @@
                                         </div>
                                         <div class="col">
                                             <mat-form-field class="full-width">
-                                                <input matInput placeholder="BTW bedrag" formControlName="vatAmount"
-                                                    [(ngModel)]="invoice.vatAmount">
-                                                <mat-error *ngIf="invoiceForm.controls['vatAmount'].hasError('required')">
+                                                <input matInput placeholder="BTW bedrag" formControlName="vatAmount">
+                                                <mat-error
+                                                    *ngIf="invoiceForm.controls['vatAmount'].hasError('required')">
                                                     BTW bedrag is <strong>verplicht</strong>
                                                 </mat-error>
                                             </mat-form-field>
@@ -109,8 +108,7 @@
                             <div class="row">
                                 <div class="col">
                                     <mat-form-field class="full-width">
-                                        <input matInput placeholder="Totaal incl. BTW" formControlName="total"
-                                            [(ngModel)]="invoice.total">
+                                        <input matInput placeholder="Totaal incl. BTW" formControlName="total">
                                         <mat-error *ngIf="invoiceForm.controls['total'].hasError('required')">
                                             Totaal is <strong>verplicht</strong>
                                         </mat-error>
