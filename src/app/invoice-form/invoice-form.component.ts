@@ -34,4 +34,13 @@ export class InvoiceFormComponent implements OnInit {
     this.customerService.getcustomer(event.source.value).subscribe(customer => this.invoice.customer = customer);
   }
 
+  save(): void {
+    //Edit mode
+    if (this.invoice.id != null) {
+      this.invoiceService.updateinvoice(this.invoice).subscribe();
+    } else {//Create mode
+      this.invoiceService.addInvoice(this.invoice).subscribe();    
+    }
+  }
+
 }
