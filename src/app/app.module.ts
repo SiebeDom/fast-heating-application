@@ -34,6 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { InvoiceFormComponent } from './invoice-form/invoice-form.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
+import { InvoiceListComponent } from './invoice-list/invoice-list.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
     CustomerFormComponent,
     InvoiceFormComponent,
     CustomerDetailComponent,
+    InvoiceListComponent,
   ],
   imports: [
     BrowserModule,
