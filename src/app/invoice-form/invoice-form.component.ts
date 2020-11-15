@@ -5,6 +5,7 @@ import { Invoice } from '../invoice';
 import { InvoiceService } from '../invoice.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { VatRate } from '../vatRate';
 
 @Component({
   selector: 'app-invoice-form',
@@ -14,6 +15,9 @@ import { ActivatedRoute } from '@angular/router';
 export class InvoiceFormComponent implements OnInit {
   customers: Customer[];
   invoice: Invoice = new Invoice();
+  vatRate = VatRate;
+  vatRates = [];
+
   invoiceForm = this.fb.group({
     id: [{value: null, disabled: true}, Validators.required],
     date: [null, Validators.required],
@@ -33,6 +37,7 @@ export class InvoiceFormComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.vatRates = Object.values(this.vatRate);
     let id = this.route.snapshot.paramMap.get('id');
     //Edit mode
     if (id != null) {
@@ -65,8 +70,25 @@ export class InvoiceFormComponent implements OnInit {
     this.customerService.getcustomer(event.source.value).subscribe(customer => this.invoice.customer = customer);
   }
 
+  selectVatRate(event) {
+    this.invoice.vatRate = event.source.value;
+    this.calculateVatAmountAndTotal();
+  }
+
+  calculateVatAmountAndTotal() {
+    this.invoice.subTotal = this.invoiceForm.value.subTotal;
+    this.invoice.vatRate = this.invoiceForm.value.vatRate;
+    if(this.invoice.subTotal != null && this.invoice.vatRate != null){
+      this.invoice.vatAmount = this.invoice.subTotal / 100 * +this.invoice.vatRate;
+      this.invoice.total = +this.invoice.subTotal + +this.invoice.vatAmount;
+      this.invoiceForm.patchValue({
+        vatAmount: this.invoice.vatAmount,
+        total: this.invoice.total,
+      });
+    }
+  }
+
   save(): void {
-    //Edit mode
     this.invoice.date = this.invoiceForm.value.date;
     this.invoice.description = this.invoiceForm.value.description;
     this.invoice.conditions = this.invoiceForm.value.conditions;
@@ -74,10 +96,16 @@ export class InvoiceFormComponent implements OnInit {
     this.invoice.vatRate = this.invoiceForm.value.vatRate;
     this.invoice.vatAmount = this.invoiceForm.value.vatAmount;
     this.invoice.total = this.invoiceForm.value.total;
+    //Edit mode
     if (this.invoice.id != null) {
       this.invoiceService.updateinvoice(this.invoice).subscribe();
     } else {//Create mode
-      this.invoiceService.addInvoice(this.invoice).subscribe();
+      this.invoiceService.addInvoice(this.invoice).subscribe(invoice => {
+        this.invoice = invoice; 
+        this.invoiceForm.patchValue({
+          id: this.invoice.id,
+        });
+      });
     }
   }
 

@@ -12,8 +12,8 @@ import { VatRate } from './vatRate';
 })
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-    var customerOne = { id: 1, type: CustomerType.INDIVIDUAL, sex: 'M', firstName: 'First', lastName: 'Last', street: 'Straatnaam', houseNumber: '5', busNumber: 'a', postalCode: '1000', city: 'Brussel', phone: '035745847', mobile: '0473587477', email: 'mock.test@gmail.com' };
-    var customerTwo = { id: 2, type: CustomerType.INDIVIDUAL, sex: 'V', firstName: 'Voor', lastName: 'Achter', street: 'Streetname', houseNumber: '32', busNumber: 'a', postalCode: '2000', city: 'Antwerpen', phone: '035474748', mobile: '0478777855', email: 'dummy.test@gmail.com' };
+    var customerOne = { id: 1, type: CustomerType.INDIVIDUAL, sex: 'M', firstName: 'First', lastName: 'Last', street: 'Straatnaam', houseNumber: '5', boxNumber: 'a', postalCode: '1000', city: 'Brussel', phone: '035745847', mobile: '0473587477', email: 'mock.test@gmail.com' };
+    var customerTwo = { id: 2, type: CustomerType.INDIVIDUAL, sex: 'V', firstName: 'Voor', lastName: 'Achter', street: 'Streetname', houseNumber: '32', boxNumber: 'a', postalCode: '2000', city: 'Antwerpen', phone: '035474748', mobile: '0478777855', email: 'dummy.test@gmail.com' };
     const customers = [
       customerOne, customerTwo
     ];
