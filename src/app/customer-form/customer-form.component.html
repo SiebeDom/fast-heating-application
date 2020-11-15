@@ -1,4 +1,4 @@
-<form [formGroup]="addressForm" (ngSubmit)="save()">
+<form [formGroup]="customerForm" (ngSubmit)="save()">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Klant informatie</mat-card-title>
@@ -21,16 +21,23 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Voornaam" formControlName="firstName" [(ngModel)]="customer.firstName">
-            <mat-error *ngIf="addressForm.controls['firstName'].hasError('required')">
+            <input matInput placeholder="Klant nummer" formControlName="id">
+        </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Voornaam" formControlName="firstName">
+            <mat-error *ngIf="customerForm.controls['firstName'].hasError('required')">
               Voornaam is <strong>verplicht</strong>
             </mat-error>
           </mat-form-field>
         </div>
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Achternaam" formControlName="lastName" [(ngModel)]="customer.lastName">
-            <mat-error *ngIf="addressForm.controls['lastName'].hasError('required')">
+            <input matInput placeholder="Achternaam" formControlName="lastName">
+            <mat-error *ngIf="customerForm.controls['lastName'].hasError('required')">
               Achternaam is <strong>verplicht</strong>
             </mat-error>
           </mat-form-field>
@@ -39,8 +46,8 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Straat" formControlName="street" [(ngModel)]="customer.street">
-            <mat-error *ngIf="addressForm.controls['street'].hasError('required')">
+            <input matInput placeholder="Straat" formControlName="street">
+            <mat-error *ngIf="customerForm.controls['street'].hasError('required')">
               Straat is <strong>verplicht</strong>
             </mat-error>
           </mat-form-field>
@@ -49,16 +56,16 @@
           <div class="row">
             <div class="col">
               <mat-form-field class="full-width">
-                <input matInput placeholder="Huisnummer" formControlName="houseNumber" [(ngModel)]="customer.houseNumber">
-                <mat-error *ngIf="addressForm.controls['houseNumber'].hasError('required')">
+                <input matInput placeholder="Huisnummer" formControlName="houseNumber">
+                <mat-error *ngIf="customerForm.controls['houseNumber'].hasError('required')">
                   Huisnummer is <strong>verplicht</strong>
                 </mat-error>
               </mat-form-field>
             </div>
             <div class="col">
               <mat-form-field class="full-width">
-                <input matInput placeholder="Busnummer" formControlName="boxNumber" [(ngModel)]="customer.boxNumber">
-                <mat-error *ngIf="addressForm.controls['boxNumber'].hasError('required')">
+                <input matInput placeholder="Busnummer" formControlName="boxNumber">
+                <mat-error *ngIf="customerForm.controls['boxNumber'].hasError('required')">
                   Bus nummer is <strong>verplicht</strong>
                 </mat-error>
               </mat-form-field>
@@ -70,17 +77,17 @@
         <div class="col">
           <mat-form-field class="full-width">
             <input matInput #postalCode maxlength="4" placeholder="Postcode" type="number"
-              formControlName="postalCode" [(ngModel)]="customer.postalCode">
+              formControlName="postalCode">
             <mat-hint align="end">{{postalCode.value.length}} / 4</mat-hint>
-            <mat-error *ngIf="addressForm.controls['postalCode'].hasError('required')">
+            <mat-error *ngIf="customerForm.controls['postalCode'].hasError('required')">
               Postcode is <strong>verplicht</strong>
             </mat-error>
           </mat-form-field>
         </div>
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Gemeente" formControlName="city" [(ngModel)]="customer.city">
-            <mat-error *ngIf="addressForm.controls['city'].hasError('required')">
+            <input matInput placeholder="Gemeente" formControlName="city">
+            <mat-error *ngIf="customerForm.controls['city'].hasError('required')">
               Gemeente is <strong>verplicht</strong>
             </mat-error>
           </mat-form-field>

@@ -15,8 +15,8 @@
 
 mat-card {
   min-width: 120px;
-  margin: 4px auto;
-  padding: 1px;
+  margin: 5px auto;
+  padding: 2px;
   padding-left: 16px;
   padding-right: 16px;
 }

@@ -9,7 +9,7 @@
                         </mat-form-field>
                     </div>
                     <div class="col">
-                        <mat-form-field appearance="fill">
+                        <mat-form-field class="full-width">
                             <mat-label>Factuur datum</mat-label>
                             <input matInput [matDatepicker]="picker3" formControlName="date">
                             <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
@@ -22,18 +22,18 @@
     </mat-card>
     <mat-card>
         <mat-card-header>
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" type="button" aria-label="Toggle menu">
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu" xPosition="before">
-                <button mat-menu-item>Bewerk</button>
+                <button mat-menu-item disabled>Bewerk</button>
             </mat-menu>
         </mat-card-header>
         <mat-card-content>
             <div>
                 <div class="row">
                     <div class="col">
-                        <mat-form-field appearance="fill">
+                        <mat-form-field  class="full-width">
                             <mat-label>Naam klant</mat-label>
                             <mat-select (selectionChange)="selectCustomer($event)" name="customer" formControlName="customerId">
                                 <mat-option *ngFor="let customer of customers" [value]="customer.id">
@@ -43,7 +43,7 @@
                         </mat-form-field>
                     </div>
                     <div class="col">
-                        <button mat-button color="primary">Nieuwe klant</button>
+                        <button mat-button color="primary" disabled>Nieuwe klant</button>
                     </div>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                             <div class="row">
                                 <div class="col">
                                     <mat-form-field class="full-width">
-                                        <input matInput placeholder="Totaal excl. BTW" formControlName="subTotal">
+                                        <input matInput placeholder="Totaal excl. BTW" formControlName="subTotal" (change)="calculateVatAmountAndTotal()">
                                         <mat-error *ngIf="invoiceForm.controls['subTotal'].hasError('required')">
                                             Subtotaal is <strong>verplicht</strong>
                                         </mat-error>
@@ -87,7 +87,12 @@
                                     <div class="row">
                                         <div class="col">
                                             <mat-form-field class="full-width">
-                                                <input matInput placeholder="BTW" formControlName="vatRate">
+                                                <mat-label>BTW</mat-label>
+                                                <mat-select (selectionChange)="selectVatRate($event)" name="vatRate" formControlName="vatRate">
+                                                    <mat-option *ngFor="let vatRate of vatRates" [value]="vatRate">
+                                                        {{vatRate}}
+                                                    </mat-option>
+                                                </mat-select>
                                                 <mat-error *ngIf="invoiceForm.controls['vatRate'].hasError('required')">
                                                     BTW percentage is <strong>verplicht</strong>
                                                 </mat-error>
