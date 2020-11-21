@@ -38,7 +38,7 @@ export class CustomerListComponent implements AfterViewInit {
   }
 
   selectCustomer(row: any) {
-    this.router.navigate(['/customer/' + row.id]);
+    this.router.navigate(['/navigation/customer/' + row.id]);
   }
 
   ngAfterViewInit() {
