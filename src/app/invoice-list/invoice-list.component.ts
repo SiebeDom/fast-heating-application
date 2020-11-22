@@ -38,7 +38,7 @@ export class InvoiceListComponent implements AfterViewInit {
   }
 
   selectInvoice(row: any) {
-    this.router.navigate(['/invoice/' + row.id]);
+    this.router.navigate(['/navigation/invoice/' + row.id]);
   }
 
   ngAfterViewInit() {
