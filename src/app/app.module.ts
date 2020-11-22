@@ -36,7 +36,6 @@ import { InvoiceFormComponent } from './invoice-form/invoice-form.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { InvoiceListComponent } from './invoice-list/invoice-list.component';
 import { InvoicePrintComponent } from './invoice-print/invoice-print.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -77,7 +76,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
