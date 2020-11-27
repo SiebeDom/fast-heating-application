@@ -1,36 +1,42 @@
 <table>
   <tr>
-    <td style="padding-right: 5px; padding-left: 5px;">
-      <a target="_blank" href="https://fastheating.be"><img src="https://fastheating.be/assets/common/header.png"
-          height="60%"></a>
-    </td>
     <td>
-      <div style="border-left:1px solid #fec506;height:100px"></div>
+      <table>
+        <tr>
+          <td>
+            <a target="_blank" href="https://fastheating.be"><img src="https://fastheating.be/assets/common/header.png"
+                height="60%"></a>
+          </td>
+          <td>
+            <div style="border-left:1px solid #fec506;height:120px"></div>
+          </td>
+        </tr>
+      </table>
     </td>
     <td>
       <table>
         <tr>
           <td colspan="4">
-            <h1 class="header">Factuur</h1>
+            <h2 class="header">Factuur</h2>
           </td>
         </tr>
         <tr>
-          <td style="padding-right: 5px; padding-left: 5px;">
+          <td>
             <table>
               <tr>
-                <td>Ondernemingsnr.</td>
+                <td><b>Ondernemingsnr.</b></td>
                 <td>0869.704.770</td>
               </tr>
               <tr>
-                <td>KBC</td>
+                <td><b>KBC</b></td>
                 <td>BE53 7350 1011 3953</td>
               </tr>
               <tr>
-                <td>BNP</td>
+                <td><b>BNP</b></td>
                 <td>BE52 0016 5683 8509</td>
               </tr>
               <tr>
-                <td>RPR Antwerpen</td>
+                <td><b>RPR Antwerpen</b></td>
                 <td>Reg 02 2500</td>
               </tr>
             </table>
@@ -38,7 +44,7 @@
           <td>
             <div style="border-left:1px solid #fec506;height:80px"></div>
           </td>
-          <td style="padding-right: 5px; padding-left: 5px;">
+          <td>
             <table>
               <tr>
                 <td>
@@ -84,68 +90,65 @@
     </td>
   </tr>
   <tr>
-    <td colspan="3">
-      <hr style="height:0.5px;border-width:0;color:#fec506;;background-color:#fec506;">
+    <td colspan="2">
+      <hr style="height:1px;border-width:0;color:#fec506;;background-color:#fec506;">
     </td>
   </tr>
   <tr>
     <td>
       <table>
         <tr>
-          <td>Factuurnummer:</td>
-          <td>F20 117</td>
+          <td><b>Factuurnummer:</b></td>
+          <td>{{invoice.id}}</td>
         </tr>
         <tr>
-          <td>Factuurdatum:</td>
-          <td>3/09/2020</td>
+          <td><b>Factuurdatum:</b></td>
+          <td>{{invoice.date | date: 'dd/MM/yyyy'}}</td>
         </tr>
       </table>
     </td>
-    <td colspan="4">
-      Taymans-Van Hacht<br />
-      Theophiel Roucourtstraat 28<br />
-      2600 Berchem</td>
+    <td>
+      <b>{{invoice.customer.lastName}} {{invoice.customer.firstName}}<br />
+        {{invoice.customer.street}} {{invoice.customer.houseNumber}} {{invoice.customer.box}}<br />
+        {{invoice.customer.postalCode}} {{invoice.customer.city}}</b></td>
   </tr>
   <tr>
-    <td colspan="5">Beschrijving:</td>
+    <td colspan="2"><b>Beschrijving:</b></td>
   </tr>
   <tr>
     <td colspan="5">
-      Plaatsen van door u aangekochte sanitaire artikelen van Facq voor leidingwerk sanitair en cv .<br />
-      Hulpstukken door mij geleverd : 180 €<br />
-      Werkuren : 90,5u x 46 € = 4163 €<br />
-      I-drain Liquid douchegoot 700 mm : 273 €<br />
-      Klokput kerdi Viega horizontaal : 44,04 €<br />
-      Opzetstuk + rooster Viega 10x10 cm inox : 135,70 €<br />
-      Totaal : 4615,74 €<br />
-      Werfadres : Willem Van Laarstraat 7 2600 Berchem .<br />
+      <p>
+        {{invoice.description}}<br />
+      </p>
     </td>
   </tr>
   <tr>
     <td>
-      Voorwaarden:<br />Een voorwaarde
+      <b>Voorwaarden:</b><br />
+      <table style="border: 1px solid black;">
+        <tr>
+          <td>{{invoice.conditions}}</td>
+        </tr>
+      </table>
     </td>
-    <td>
-      <table>
+    <td style="text-align: right;">
+      <table style="width: 100%;">
         <tr>
           <td>Totaal exclusief BTW:</td>
-          <td>€ 4.615,74</td>
+          <td>€ {{invoice.subTotal}}</td>
         </tr>
         <tr>
-          <td>BTW: 6%</td>
-          <td>€ 276,94</td>
+          <td>BTW: {{invoice.vatRate}}%</td>
+          <td>€ {{invoice.vatAmount}}</td>
         </tr>
         <tr>
           <td>Totaal inclusief BTW:</td>
-          <td>€ 4.892,68</td>
+          <td style="border: 1px solid black;">€ {{invoice.total}}</td>
         </tr>
       </table>
   </tr>
   <tr>
-    <td colspan="5">Betalingswijze: Rekeningnummer</td>
-  </tr>
-  <tr>
-    <td> <a target="_blank" href="https://fastheating.be"><img src="https://fastheating.be/assets/common/header.png"
-          height="60%"></a></td>
+    <td colspan="2" style="text-align:center"> <a target="_blank" href="https://fastheating.be"><img
+          src="https://fastheating.be/assets/common/header.png" height="60%"></a></td>
   </tr>
 </table>
