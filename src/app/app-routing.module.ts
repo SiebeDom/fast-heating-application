@@ -9,7 +9,7 @@ import { InvoicePrintComponent } from './invoice-print/invoice-print.component';
 import { NavigationComponent } from './navigation/navigation.component';
 
 const routes: Routes = [
-  { path: 'invoice-print', component: InvoicePrintComponent },
+  { path: 'invoice-print/:id', component: InvoicePrintComponent },
   { path: '', redirectTo: 'navigation', pathMatch: 'full' },
   { path: 'navigation', component: NavigationComponent, children: [
     { path: '', component: DashboardComponent },

@@ -4,7 +4,7 @@ import { CustomerService } from '../customer.service';
 import { Invoice } from '../invoice';
 import { InvoiceService } from '../invoice.service';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { VatRate } from '../vatRate';
 
 @Component({
@@ -34,7 +34,8 @@ export class InvoiceFormComponent implements OnInit {
     private fb: FormBuilder,
     private customerService: CustomerService,
     private invoiceService: InvoiceService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.vatRates = Object.values(this.vatRate);
@@ -107,6 +108,10 @@ export class InvoiceFormComponent implements OnInit {
         });
       });
     }
+  }
+
+  print(): void {
+    this.router.navigate(['invoice-print/' + this.invoice.id]);
   }
 
 }

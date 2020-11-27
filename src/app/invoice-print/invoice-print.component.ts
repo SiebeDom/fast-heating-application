@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Invoice } from '../invoice';
+import { InvoiceService } from '../invoice.service';
 
 @Component({
   selector: 'app-invoice-print',
@@ -6,16 +9,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./invoice-print.component.css']
 })
 export class InvoicePrintComponent implements OnInit {
+  invoice: Invoice;
 
-  calc2Cols = '2 2 calc(10em + 10px);';
-  /** 10px is the missing margin of the missing box */
-  calc3Cols = '3 3 calc(15em + 20px)';
-  /** 20px is the missing margin of the two missing boxes */
-  calc4Cols = '4 4 calc(20em + 40px)';
-
-  constructor() { }
+  constructor(private invoiceService: InvoiceService,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    let id = this.route.snapshot.paramMap.get('id');
+    if (id != null) {
+      this.invoiceService.getinvoice(+id).subscribe(invoice => {
+        this.invoice = invoice;
+      })
+    }
   }
 
 }
