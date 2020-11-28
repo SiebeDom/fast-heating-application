@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Invoice } from '../invoice';
-import { InvoiceService } from '../invoice.service';
+import { Invoice } from '../model/invoice';
+import { InvoiceService } from '../service/invoice.service';
 
 @Component({
   selector: 'app-invoice-print',

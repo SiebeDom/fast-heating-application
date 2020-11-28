@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { Customer } from './customer';
-import { CustomerType } from './customerType';
-import { Invoice } from './invoice';
-import { InvoiceType } from './invoiceType';
-import { PaymentMethod } from './paymentMethod';
-import { VatRate } from './vatRate';
+import { Customer } from './model/customer';
+import { CustomerType } from './model/customerType';
+import { Invoice } from './model/invoice';
+import { InvoiceType } from './model/invoiceType';
+import { PaymentMethod } from './model/paymentMethod';
+import { VatRate } from './model/vatRate';
 
 @Injectable({
   providedIn: 'root',

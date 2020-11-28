@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer } from '../customer';
-import { CustomerService } from '../customer.service';
-import { Invoice } from '../invoice';
-import { InvoiceService } from '../invoice.service';
+import { Customer } from '../model/customer';
+import { CustomerService } from '../service/customer.service';
+import { Invoice } from '../model/invoice';
+import { InvoiceService } from '../service/invoice.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { VatRate } from '../vatRate';
+import { VatRate } from '../model/vatRate';
 
 @Component({
   selector: 'app-invoice-form',
@@ -111,7 +111,7 @@ export class InvoiceFormComponent implements OnInit {
   }
 
   print(): void {
-    this.router.navigate(['invoice-print/' + this.invoice.id]);
+    this.router.navigate(['invoice/print/' + this.invoice.id]);
   }
 
 }

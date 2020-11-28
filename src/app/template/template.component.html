@@ -1,15 +1,15 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'template'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#" routerLink="/navigation/dashboard">Startpagina</a>
-      <a mat-list-item href="#" routerLink="/navigation/customers">Klanten</a>
-      <a mat-list-item href="#" routerLink="/navigation/customer">Nieuwe klant</a>
-      <a mat-list-item href="#" routerLink="/navigation/invoices">Facturen</a>
-      <a mat-list-item href="#" routerLink="/navigation/invoice">Nieuwe factuur</a>
+      <a mat-list-item href="#" routerLink="/template/dashboard">Startpagina</a>
+      <a mat-list-item href="#" routerLink="/template/customer/list">Klanten</a>
+      <a mat-list-item href="#" routerLink="/template/customer/new">Nieuwe klant</a>
+      <a mat-list-item href="#" routerLink="/template/invoice/list">Facturen</a>
+      <a mat-list-item href="#" routerLink="/template/invoice/new">Nieuwe factuur</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

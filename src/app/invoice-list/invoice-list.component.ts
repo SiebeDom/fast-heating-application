@@ -3,8 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { Invoice } from '../invoice';
-import { InvoiceService } from '../invoice.service';
+import { Invoice } from '../model/invoice';
+import { InvoiceService } from '../service/invoice.service';
 import { InvoiceListDataSource } from './invoice-list-datasource';
 
 @Component({
@@ -38,7 +38,7 @@ export class InvoiceListComponent implements AfterViewInit {
   }
 
   selectInvoice(row: any) {
-    this.router.navigate(['/navigation/invoice/' + row.id]);
+    this.router.navigate(['/template/invoice/edit/' + row.id]);
   }
 
   ngAfterViewInit() {

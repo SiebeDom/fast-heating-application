@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Customer } from '../customer';
+import { Customer } from '../model/customer';
 
 @Component({
   selector: 'app-customer-detail',
@@ -13,9 +13,6 @@ export class CustomerDetailComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  edit(): void {
   }
 
 }

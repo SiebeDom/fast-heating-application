@@ -17,7 +17,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
-import { NavigationComponent } from './navigation/navigation.component';
+import { TemplateComponent } from './template/template.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
@@ -41,7 +41,7 @@ import { InvoicePrintComponent } from './invoice-print/invoice-print.component';
   declarations: [
     AppComponent,
     DashboardComponent,
-    NavigationComponent,
+    TemplateComponent,
     CustomerListComponent,
     CustomerFormComponent,
     InvoiceFormComponent,

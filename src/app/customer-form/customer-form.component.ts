@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Customer } from '../customer';
-import { CustomerService } from '../customer.service';
+import { Customer } from '../model/customer';
+import { CustomerService } from '../service/customer.service';
 
 @Component({
   selector: 'app-customer-form',
@@ -24,8 +24,6 @@ export class CustomerFormComponent {
   });
 
   customer: Customer;
-
-  hasUnitNumber = false;
 
   constructor(
     private fb: FormBuilder,

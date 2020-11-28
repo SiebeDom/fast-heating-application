@@ -3,8 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { Customer } from '../customer';
-import { CustomerService } from '../customer.service';
+import { Customer } from '../model/customer';
+import { CustomerService } from '../service/customer.service';
 import { CustomerListDataSource } from './customer-list-datasource';
 
 @Component({
@@ -38,7 +38,7 @@ export class CustomerListComponent implements AfterViewInit {
   }
 
   selectCustomer(row: any) {
-    this.router.navigate(['/navigation/customer/' + row.id]);
+    this.router.navigate(['/template/customer/edit/' + row.id]);
   }
 
   ngAfterViewInit() {
