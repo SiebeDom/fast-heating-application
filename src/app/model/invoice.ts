@@ -15,6 +15,9 @@ export class Invoice {
   vatRate: VatRate;
   vatAmount: number;
   total: number;
+  year: number;
+  index: number;
+  number: string;
 
   constructor() {
     this.date = new Date();

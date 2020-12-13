@@ -17,9 +17,10 @@ export class InvoiceFormComponent implements OnInit {
   invoice: Invoice = new Invoice();
   vatRate = VatRate;
   vatRates = [];
+  pad = "000";
 
   invoiceForm = this.fb.group({
-    id: [{value: null, disabled: true}, Validators.required],
+    number: [{ value: null, disabled: true }, Validators.required],
     date: [null, Validators.required],
     description: [null, Validators.required],
     customerId: [null, Validators.required],
@@ -45,9 +46,9 @@ export class InvoiceFormComponent implements OnInit {
       this.customerService.getcustomers().subscribe(customers => {
         this.customers = customers;
         this.invoiceService.getinvoice(+id).subscribe(invoice => {
-          this.invoice = invoice; 
+          this.invoice = invoice;
           this.invoiceForm.setValue({
-            id: this.invoice.id,
+            number: this.invoice.number,
             date: this.invoice.date,
             customerId: this.invoice.customer.id,
             description: this.invoice.description,
@@ -79,7 +80,7 @@ export class InvoiceFormComponent implements OnInit {
   calculateVatAmountAndTotal() {
     this.invoice.subTotal = this.invoiceForm.value.subTotal;
     this.invoice.vatRate = this.invoiceForm.value.vatRate;
-    if(this.invoice.subTotal != null && this.invoice.vatRate != null){
+    if (this.invoice.subTotal != null && this.invoice.vatRate != null) {
       this.invoice.vatAmount = this.invoice.subTotal / 100 * +this.invoice.vatRate;
       this.invoice.total = +this.invoice.subTotal + +this.invoice.vatAmount;
       this.invoiceForm.patchValue({
@@ -99,12 +100,17 @@ export class InvoiceFormComponent implements OnInit {
     this.invoice.total = this.invoiceForm.value.total;
     //Edit mode
     if (this.invoice.id != null) {
-      this.invoiceService.updateinvoice(this.invoice).subscribe();
+      this.invoiceService.updateInvoice(this.invoice).subscribe();
     } else {//Create mode
-      this.invoiceService.addInvoice(this.invoice).subscribe(invoice => {
-        this.invoice = invoice; 
-        this.invoiceForm.patchValue({
-          id: this.invoice.id,
+      this.invoice.year = new Date().getFullYear();
+      this.invoiceService.getInvoicesOfThisYear().subscribe(invoices => {
+        this.invoice.index = invoices.length > 0 ? Math.max(...invoices.map(t => t.index)) + 1 : 1;
+        this.invoice.number = "F" + this.invoice.year.toString().substr(this.invoice.year.toString().length - 2) + (this.pad+this.invoice.index.toString()).slice(-this.pad.length);
+        this.invoiceService.addInvoice(this.invoice).subscribe(invoice => {
+          this.invoice = invoice;
+          this.invoiceForm.patchValue({
+            number: this.invoice.number,
+          });
         });
       });
     }

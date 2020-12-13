@@ -28,6 +28,13 @@ export class InvoiceService {
       );
   }
 
+  getInvoicesOfThisYear(): Observable<Invoice[]> {
+    return this.http.get<Invoice[]>(this.invoicesUrl)
+      .pipe(
+        map( invoices => invoices.filter(r => r.year==new Date().getFullYear()) )
+      );
+  }
+
   /** GET invoice by id. Return `undefined` when id not found */
   getinvoiceNo404<Data>(id: number): Observable<Invoice> {
     const url = `${this.invoicesUrl}/?id=${id}`;
@@ -71,7 +78,7 @@ export class InvoiceService {
   }
 
   /** PUT: update the invoice on the server */
-  updateinvoice(invoice: Invoice): Observable<any> {
+  updateInvoice(invoice: Invoice): Observable<any> {
     return this.http.put(this.invoicesUrl, invoice, this.httpOptions).pipe(
       catchError(this.handleError<any>('updateinvoice'))
     );
