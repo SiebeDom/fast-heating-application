@@ -19,7 +19,7 @@ export class InvoiceListComponent implements AfterViewInit {
   dataSource: InvoiceListDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'date', 'firstName', 'lastName'];
+  displayedColumns = ['number', 'date', 'firstName', 'lastName'];
 
   constructor(
     private invoiceService: InvoiceService,

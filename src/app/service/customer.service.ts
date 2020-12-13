@@ -28,6 +28,13 @@ export class CustomerService {
       );
   }
 
+  getCustomersOfThisYear(): Observable<Customer[]> {
+    return this.http.get<Customer[]>(this.customersUrl)
+      .pipe(
+        map( customers => customers.filter(r => r.year==new Date().getFullYear()) )
+      );
+  }
+
   /** GET customer by id. Return `undefined` when id not found */
   getcustomerNo404<Data>(id: number): Observable<Customer> {
     const url = `${this.customersUrl}/?id=${id}`;

@@ -105,7 +105,7 @@ export class InvoiceFormComponent implements OnInit {
       this.invoice.year = new Date().getFullYear();
       this.invoiceService.getInvoicesOfThisYear().subscribe(invoices => {
         this.invoice.index = invoices.length > 0 ? Math.max(...invoices.map(t => t.index)) + 1 : 1;
-        this.invoice.number = "F" + this.invoice.year.toString().substr(this.invoice.year.toString().length - 2) + (this.pad+this.invoice.index.toString()).slice(-this.pad.length);
+        this.invoice.number = "F" + this.invoice.year.toString().substr(this.invoice.year.toString().length - 2) + " " + (this.pad+this.invoice.index.toString()).slice(-this.pad.length);
         this.invoiceService.addInvoice(this.invoice).subscribe(invoice => {
           this.invoice = invoice;
           this.invoiceForm.patchValue({

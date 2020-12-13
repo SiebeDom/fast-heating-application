@@ -68,7 +68,7 @@ export class InvoiceListDataSource extends DataSource<Invoice> {
       switch (this.sort.active) {
         case 'firstName': return compare(a.customer.firstName, b.customer.firstName, isAsc);
         case 'lastName': return compare(a.customer.lastName, b.customer.lastName, isAsc);
-        case 'id': return compare(+a.id, +b.id, isAsc);
+        case 'number': return compare(+a.number, +b.number, isAsc);
         default: return 0;
       }
     });

@@ -17,6 +17,9 @@ export class Customer {
   phone?: string;
   mobile?: string;
   email?: string;
+  year: number;
+  index: number;
+  number: string;
 
   constructor(id?: number, type?: CustomerType, firstName?:string, lastName?:string) {
     this.id = id;

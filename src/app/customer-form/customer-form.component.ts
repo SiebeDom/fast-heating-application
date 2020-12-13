@@ -11,7 +11,7 @@ import { CustomerService } from '../service/customer.service';
 })
 export class CustomerFormComponent {
   customerForm = this.fb.group({
-    id: [{value: null, disabled: true}, Validators.required],
+    number: [{ value: null, disabled: true }, Validators.required],
     firstName: [null, Validators.required],
     lastName: [null, Validators.required],
     street: [null, Validators.required],
@@ -24,6 +24,7 @@ export class CustomerFormComponent {
   });
 
   customer: Customer;
+  pad = "000";
 
   constructor(
     private fb: FormBuilder,
@@ -36,9 +37,9 @@ export class CustomerFormComponent {
     //Edit mode
     if (id != null) {
       this.customerService.getcustomer(+id).subscribe(customer => {
-        this.customer = customer; 
+        this.customer = customer;
         this.customerForm.setValue({
-          id: this.customer.id,
+          number: this.customer.number,
           firstName: this.customer.firstName,
           lastName: this.customer.lastName,
           street: this.customer.street,
@@ -65,12 +66,17 @@ export class CustomerFormComponent {
     if (this.customer.id != null) {
       this.customerService.updatecustomer(this.customer).subscribe();
     } else {//Create mode
-      this.customerService.addCustomer(this.customer).subscribe(customer => {
-        this.customer = customer; 
-        this.customerForm.patchValue({
-          id: this.customer.id,
+      this.customerService.getCustomersOfThisYear().subscribe(customers => {
+        this.customer.year = new Date().getFullYear();
+        this.customer.index = customers.length > 0 ? Math.max(...customers.map(t => t.index)) + 1 : 1;
+        this.customer.number = "K" + this.customer.year.toString().substr(this.customer.year.toString().length - 2) + " " + (this.pad + this.customer.index.toString()).slice(-this.pad.length);
+        this.customerService.addCustomer(this.customer).subscribe(customer => {
+          this.customer = customer;
+          this.customerForm.patchValue({
+            number: this.customer.number,
+          });
         });
-      });  
+      });
     }
   }
 

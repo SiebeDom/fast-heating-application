@@ -19,7 +19,7 @@ export class CustomerListComponent implements AfterViewInit {
   dataSource: CustomerListDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'firstName', 'lastName'];
+  displayedColumns = ['number', 'firstName', 'lastName'];
 
   constructor(
     private customerService: CustomerService,

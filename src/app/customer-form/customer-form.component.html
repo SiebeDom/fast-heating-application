@@ -12,17 +12,17 @@
     <mat-card-content>
       <div class="row">
         <div class="col">
-          <mat-radio-group disabled>
-            <mat-radio-button value="1" checked='true'>Particulier</mat-radio-button>
-            <mat-radio-button value="2">Bedrijf</mat-radio-button>
-          </mat-radio-group>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Klant nummer" formControlName="number">
+        </mat-form-field>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Klant nummer" formControlName="id">
-        </mat-form-field>
+          <mat-radio-group disabled>
+            <mat-radio-button value="1" checked='true'>Particulier</mat-radio-button>
+            <mat-radio-button value="2">Bedrijf</mat-radio-button>
+          </mat-radio-group>
         </div>
       </div>
       <div class="row">
