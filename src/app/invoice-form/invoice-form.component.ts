@@ -17,9 +17,10 @@ export class InvoiceFormComponent implements OnInit {
   invoice: Invoice = new Invoice();
   vatRate = VatRate;
   vatRates = [];
+  pad = "000";
 
   invoiceForm = this.fb.group({
-    id: [{ value: null, disabled: true }, Validators.required],
+    number: [{ value: null, disabled: true }, Validators.required],
     date: [null, Validators.required],
     description: [null, Validators.required],
     customerId: [null, Validators.required],
@@ -47,7 +48,7 @@ export class InvoiceFormComponent implements OnInit {
         this.invoiceService.getinvoice(+id).subscribe(invoice => {
           this.invoice = invoice;
           this.invoiceForm.setValue({
-            id: this.invoice.id,
+            number: this.invoice.number,
             date: this.invoice.date,
             customerId: this.invoice.customer.id,
             description: this.invoice.description,
@@ -104,12 +105,11 @@ export class InvoiceFormComponent implements OnInit {
       this.invoice.year = new Date().getFullYear();
       this.invoiceService.getInvoicesOfThisYear().subscribe(invoices => {
         this.invoice.index = invoices.length > 0 ? Math.max(...invoices.map(t => t.index)) + 1 : 1;
+        this.invoice.number = "F" + this.invoice.year.toString().substr(this.invoice.year.toString().length - 2) + (this.pad+this.invoice.index.toString()).slice(-this.pad.length);
         this.invoiceService.addInvoice(this.invoice).subscribe(invoice => {
           this.invoice = invoice;
-          this.invoice = invoice;
-          this.invoice = invoice;
           this.invoiceForm.patchValue({
-            id: this.invoice.id,
+            number: this.invoice.number,
           });
         });
       });

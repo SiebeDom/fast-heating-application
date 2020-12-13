@@ -18,8 +18,8 @@ export class InMemoryDataService implements InMemoryDbService {
       customerOne, customerTwo
     ];
     const invoices = [
-      { id: 1, type: InvoiceType.INVOICE, date: new Date(), conditions: "Voorwaarden", description: "Omschrijving", paymentMethod: PaymentMethod.BANK_ACCOUNT, customer: customerOne, subTotal: 100, vatRate: VatRate.SIX, vatAmount: 6, total: 106, year: 2020, index: 1},
-      { id: 2, type: InvoiceType.INVOICE, date: new Date(), conditions: "Voorwaarden", description: "Omschrijving", paymentMethod: PaymentMethod.CREDIT_CARD, customer: customerTwo, subTotal: 100, vatRate: VatRate.SIX, vatAmount: 21, total: 121, year: 2020, index: 2},
+      { id: 1, type: InvoiceType.INVOICE, date: new Date(), conditions: "Voorwaarden", description: "Omschrijving", paymentMethod: PaymentMethod.BANK_ACCOUNT, customer: customerOne, subTotal: 100, vatRate: VatRate.SIX, vatAmount: 6, total: 106, year: 2020, index: 1, number: 'F20 001'},
+      { id: 2, type: InvoiceType.INVOICE, date: new Date(), conditions: "Voorwaarden", description: "Omschrijving", paymentMethod: PaymentMethod.CREDIT_CARD, customer: customerTwo, subTotal: 100, vatRate: VatRate.SIX, vatAmount: 21, total: 121, year: 2020, index: 2, number: 'F20 002'},
     ];
     return { customers, invoices };
   }
