@@ -52,7 +52,7 @@ export class InvoiceService {
   getinvoice(id: number): Observable<Invoice> {
     const url = `${this.invoicesUrl}/${id}`;
     return this.http.get<Invoice>(url).pipe(
-      tap((newInvoice: Invoice) => console.log(`get invoice w/ id=${newInvoice.customer.firstName}`)),
+      tap((newInvoice: Invoice) => console.log(`get invoice w/ id=${newInvoice.customer.name}`)),
       catchError(this.handleError<Invoice>(`getinvoice id=${id}`))
     );
   }

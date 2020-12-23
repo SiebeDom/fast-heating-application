@@ -18,7 +18,7 @@ export class CustomerListComponent implements AfterViewInit {
   @ViewChild(MatTable) table: MatTable<Customer>;
   dataSource: CustomerListDataSource;
 
-  displayedColumns = ['number', 'type', 'firstName', 'lastName'];
+  displayedColumns = ['number', 'type', 'name'];
 
   constructor(
     private customerService: CustomerService,

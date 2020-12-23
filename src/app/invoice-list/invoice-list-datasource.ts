@@ -66,8 +66,7 @@ export class InvoiceListDataSource extends DataSource<Invoice> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'firstName': return compare(a.customer.firstName, b.customer.firstName, isAsc);
-        case 'lastName': return compare(a.customer.lastName, b.customer.lastName, isAsc);
+        case 'name': return compare(a.customer.name, b.customer.name, isAsc);
         case 'number': return compare(+a.number, +b.number, isAsc);
         default: return 0;
       }

@@ -25,20 +25,12 @@
           </mat-radio-group>
         </div>
       </div>
-      <div class="row" *ngIf="customerForm.controls['type'].value === 'Particulier'">
+      <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Voornaam" formControlName="firstName">
-            <mat-error *ngIf="customerForm.controls['firstName'].hasError('required')">
+            <input matInput placeholder="Naam" formControlName="name">
+            <mat-error *ngIf="customerForm.controls['name'].hasError('required')">
               Voornaam is <strong>verplicht</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Achternaam" formControlName="lastName">
-            <mat-error *ngIf="customerForm.controls['lastName'].hasError('required')">
-              Achternaam is <strong>verplicht</strong>
             </mat-error>
           </mat-form-field>
         </div>
@@ -46,17 +38,9 @@
       <div class="row" *ngIf="customerForm.controls['type'].value === 'Bedrijf'">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Bedrijfsnaam" formControlName="companyName">
-            <mat-error *ngIf="customerForm.controls['companyName'].hasError('required')">
-              Bedrijfsnaam is <strong>verplicht</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col">
-          <mat-form-field class="full-width">
             <input matInput placeholder="BTW nummer" formControlName="taxNumber">
             <mat-error *ngIf="customerForm.controls['taxNumber'].hasError('required')">
-              Achternaam is <strong>verplicht</strong>
+              TaxNumber is <strong>verplicht</strong>
             </mat-error>
           </mat-form-field>
         </div>
@@ -108,6 +92,25 @@
             <mat-error *ngIf="customerForm.controls['city'].hasError('required')">
               Gemeente is <strong>verplicht</strong>
             </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Email" formControlName="email">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Telefoon" formControlName="phone">
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Mobile" formControlName="mobile">
           </mat-form-field>
         </div>
       </div>

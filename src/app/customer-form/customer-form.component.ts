@@ -14,9 +14,7 @@ export class CustomerFormComponent {
   customerForm = this.fb.group({
     number: [{ value: null, disabled: true }, Validators.required],
     type: [{ value: null }, Validators.required],
-    firstName: [null],
-    lastName: [null],
-    companyName: [null],
+    name: [null, Validators.required],
     taxNumber: [null],
     street: [null, Validators.required],
     houseNumber: [null, Validators.required],
@@ -25,6 +23,9 @@ export class CustomerFormComponent {
     postalCode: [null, Validators.compose([
       Validators.required, Validators.minLength(4), Validators.maxLength(4)])
     ],
+    email: null,
+    phone: null,
+    mobile: null,
   });
 
   customer: Customer;
@@ -45,15 +46,16 @@ export class CustomerFormComponent {
         this.customerForm.patchValue({
           number: this.customer.number,
           type: this.customer.type,
-          firstName: this.customer.firstName,
-          lastName: this.customer.lastName,
-          companyName: this.customer.companyName,
+          name: this.customer.name,
           taxNumber: this.customer.taxNumber,
           street: this.customer.street,
           houseNumber: this.customer.houseNumber,
           boxNumber: this.customer.boxNumber,
           postalCode: this.customer.postalCode,
           city: this.customer.city,
+          email: this.customer.email,
+          phone: this.customer.phone,
+          mobile: this.customer.mobile,
         });
       });
     } else {//Create mode
@@ -63,15 +65,16 @@ export class CustomerFormComponent {
 
   save(): void {
     this.customer.type = this.customerForm.value.type;
-    this.customer.firstName = this.customerForm.value.firstName;
-    this.customer.lastName = this.customerForm.value.lastName;
-    this.customer.companyName = this.customerForm.value.companyName;
+    this.customer.name = this.customerForm.value.name;
     this.customer.taxNumber = this.customerForm.value.taxNumber;
     this.customer.street = this.customerForm.value.street;
     this.customer.houseNumber = this.customerForm.value.houseNumber;
     this.customer.boxNumber = this.customerForm.value.boxNumber;
     this.customer.postalCode = this.customerForm.value.postalCode;
     this.customer.city = this.customerForm.value.city;
+    this.customer.email = this.customerForm.value.email;
+    this.customer.phone = this.customerForm.value.phone;
+    this.customer.mobile = this.customerForm.value.mobile;
     //Edit mode
     if (this.customer.id != null) {
       this.customerService.updatecustomer(this.customer).subscribe();

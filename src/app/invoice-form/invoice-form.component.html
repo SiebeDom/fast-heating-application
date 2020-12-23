@@ -37,7 +37,7 @@
                             <mat-label>Naam klant</mat-label>
                             <mat-select (selectionChange)="selectCustomer($event)" name="customer" formControlName="customerId">
                                 <mat-option *ngFor="let customer of customers" [value]="customer.id">
-                                    {{customer.lastName}} {{customer.firstName}}
+                                    {{customer.name}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
