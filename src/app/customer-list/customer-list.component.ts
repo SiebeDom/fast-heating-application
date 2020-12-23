@@ -18,8 +18,7 @@ export class CustomerListComponent implements AfterViewInit {
   @ViewChild(MatTable) table: MatTable<Customer>;
   dataSource: CustomerListDataSource;
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['number', 'firstName', 'lastName'];
+  displayedColumns = ['number', 'type', 'firstName', 'lastName'];
 
   constructor(
     private customerService: CustomerService,

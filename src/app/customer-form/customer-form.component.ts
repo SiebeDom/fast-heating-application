@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Customer } from '../model/customer';
+import { CustomerType } from '../model/customerType';
 import { CustomerService } from '../service/customer.service';
 
 @Component({
@@ -12,8 +13,11 @@ import { CustomerService } from '../service/customer.service';
 export class CustomerFormComponent {
   customerForm = this.fb.group({
     number: [{ value: null, disabled: true }, Validators.required],
-    firstName: [null, Validators.required],
-    lastName: [null, Validators.required],
+    type: [{ value: null }, Validators.required],
+    firstName: [null],
+    lastName: [null],
+    companyName: [null],
+    taxNumber: [null],
     street: [null, Validators.required],
     houseNumber: [null, Validators.required],
     boxNumber: null,
@@ -38,10 +42,13 @@ export class CustomerFormComponent {
     if (id != null) {
       this.customerService.getcustomer(+id).subscribe(customer => {
         this.customer = customer;
-        this.customerForm.setValue({
+        this.customerForm.patchValue({
           number: this.customer.number,
+          type: this.customer.type,
           firstName: this.customer.firstName,
           lastName: this.customer.lastName,
+          companyName: this.customer.companyName,
+          taxNumber: this.customer.taxNumber,
           street: this.customer.street,
           houseNumber: this.customer.houseNumber,
           boxNumber: this.customer.boxNumber,
@@ -55,8 +62,11 @@ export class CustomerFormComponent {
   }
 
   save(): void {
+    this.customer.type = this.customerForm.value.type;
     this.customer.firstName = this.customerForm.value.firstName;
     this.customer.lastName = this.customerForm.value.lastName;
+    this.customer.companyName = this.customerForm.value.companyName;
+    this.customer.taxNumber = this.customerForm.value.taxNumber;
     this.customer.street = this.customerForm.value.street;
     this.customer.houseNumber = this.customerForm.value.houseNumber;
     this.customer.boxNumber = this.customerForm.value.boxNumber;

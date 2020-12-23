@@ -66,9 +66,10 @@ export class CustomerListDataSource extends DataSource<Customer> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
+        case 'number': return compare(+a.number, +b.number, isAsc);
+        case 'type': return compare(+a.type, +b.type, isAsc);
         case 'firstName': return compare(a.firstName, b.firstName, isAsc);
         case 'lastName': return compare(a.lastName, b.lastName, isAsc);
-        case 'number': return compare(+a.number, +b.number, isAsc);
         default: return 0;
       }
     });
