@@ -99,7 +99,7 @@
       <table>
         <tr>
           <td><b>Factuurnummer:</b></td>
-          <td>{{invoice.id}}</td>
+          <td>{{invoice.number}}</td>
         </tr>
         <tr>
           <td><b>Factuurdatum:</b></td>
@@ -107,17 +107,18 @@
         </tr>
       </table>
     </td>
-    <td>
+    <td style="padding-left: 275px;">
       <b>{{invoice.customer.name}}<br />
         {{invoice.customer.street}} {{invoice.customer.houseNumber}} {{invoice.customer.boxNumber}}<br />
-        {{invoice.customer.postalCode}} {{invoice.customer.city}}</b></td>
+        {{invoice.customer.postalCode}} {{invoice.customer.city}}</b>
+    </td>
   </tr>
   <tr>
     <td colspan="2"><b>Beschrijving:</b></td>
   </tr>
   <tr>
     <td colspan="5">
-      <p>
+      <p style="height: 500px;">
         {{invoice.description}}<br />
       </p>
     </td>
@@ -146,6 +147,7 @@
           <td style="border: 1px solid black;">€ {{invoice.total}}</td>
         </tr>
       </table>
+    </td>
   </tr>
   <tr>
     <td colspan="2" style="text-align:center"> <a target="_blank" href="https://fastheating.be"><img
