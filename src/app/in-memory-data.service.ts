@@ -14,7 +14,7 @@ export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     var customerOne = { id: 1, type: CustomerType.INDIVIDUAL, name: 'Last First', street: 'Straatnaam', houseNumber: '5', boxNumber: 'a', postalCode: '1000', city: 'Brussel', phone: '035745847', mobile: '0473587477', email: 'mock.test@gmail.com', year: 2020, index: 1, number: 'K20 001' };
     var customerTwo = { id: 2, type: CustomerType.INDIVIDUAL, name: 'Achter Voor', street: 'Streetname', houseNumber: '32', boxNumber: 'a', postalCode: '2000', city: 'Antwerpen', phone: '035474748', mobile: '0478777855', email: 'dummy.test@gmail.com', year: 2020, index: 2, number: 'K20 002' };
-    var customerThree = { id: 3, type: CustomerType.COMPANY, name: 'Bedrijf', taxNumber: 'BE-123.456.789', street: 'Streetname', houseNumber: '32', boxNumber: 'a', postalCode: '2000', city: 'Antwerpen', phone: '035474748', mobile: '0478777855', email: 'dummy.test@gmail.com', year: 2020, index: 3, number: 'K20 003' };
+    var customerThree = { id: 3, type: CustomerType.COMPANY, name: 'Bedrijf', taxNumber: 'BE-123.456.789', street: 'Straat', houseNumber: '100', postalCode: '9000', city: 'Gent', phone: '035474748', mobile: '0478777855', email: 'dummy.test@gmail.com', year: 2020, index: 3, number: 'K20 003' };
     const customers = [
       customerOne, customerTwo, customerThree
     ];

@@ -18,6 +18,15 @@ export class InvoiceFormComponent implements OnInit {
   vatRate = VatRate;
   vatRates = [];
   pad = "000";
+  customerId: number;
+  invoiceAction: string;
+  invoiceDate: Date;
+  invoiceDescription: string;
+  invoiceConditions: string;
+  invoiceSubTotal: number;
+  invoiceVatAmount: number;
+  invoiceVatRate: number;
+  invoiceTotal: number;
 
   invoiceForm = this.fb.group({
     number: [{ value: null, disabled: true }, Validators.required],
@@ -41,29 +50,49 @@ export class InvoiceFormComponent implements OnInit {
   ngOnInit(): void {
     this.vatRates = Object.values(this.vatRate);
     let id = this.route.snapshot.paramMap.get('id');
+    this.customerId = +this.route.snapshot.paramMap.get('customerId');
+    this.invoiceAction = this.route.snapshot.paramMap.get('invoiceAction');
+    this.invoiceDate = this.route.snapshot.paramMap.get('invoiceDate') != null ? new Date(this.route.snapshot.paramMap.get('invoiceDate')): null;
+    this.invoiceDescription = this.route.snapshot.paramMap.get('invoiceDescription');
+    this.invoiceConditions = this.route.snapshot.paramMap.get('invoiceConditions');
+    this.invoiceSubTotal = +this.route.snapshot.paramMap.get('invoiceSubTotal');
+    this.invoiceVatRate = +this.route.snapshot.paramMap.get('invoiceVatRate');
+    this.invoiceVatAmount = +this.route.snapshot.paramMap.get('invoiceVatAmount');
+    this.invoiceTotal = +this.route.snapshot.paramMap.get('invoiceTotal');
     //Edit mode
     if (id != null) {
       this.customerService.getcustomers().subscribe(customers => {
         this.customers = customers;
         this.invoiceService.getinvoice(+id).subscribe(invoice => {
           this.invoice = invoice;
+          console.log(this.invoiceDescription);
           this.invoiceForm.setValue({
             number: this.invoice.number,
-            date: this.invoice.date,
-            customerId: this.invoice.customer.id,
-            description: this.invoice.description,
-            conditions: this.invoice.conditions,
-            subTotal: this.invoice.subTotal,
-            vatRate: this.invoice.vatRate,
-            vatAmount: this.invoice.vatAmount,
-            total: this.invoice.total,
+            date: this.invoiceDate != null ? this.invoiceDate : this.invoice.date,
+            customerId: this.customerId != 0 ? this.customerId : this.invoice.customer.id,
+            description: this.invoiceDescription != null ? this.invoiceDescription : this.invoice.description,
+            conditions: this.invoiceConditions != null ? this.invoiceConditions : this.invoice.conditions,
+            subTotal: this.invoiceSubTotal != 0 ? this.invoiceSubTotal : this.invoice.subTotal,
+            vatRate: this.invoiceVatRate != 0 ? this.invoiceVatRate : this.invoice.vatRate,
+            vatAmount: this.invoiceVatAmount != 0 ? this.invoiceVatAmount : this.invoice.vatAmount,
+            total: this.invoiceTotal != 0 ? this.invoiceTotal : this.invoice.total,
           });
+          if(this.customerId != 0){
+            this.customerService.getcustomer(this.customerId).subscribe(customer => this.invoice.customer = customer);
+          }
         });
       });
     } else {//Create mode
       this.customerService.getcustomers().subscribe(customers => this.customers = customers);
       this.invoiceForm.patchValue({
         date: this.invoice.date,
+        customerId: this.customerId != 0 ? this.customerId : this.invoice.customer.id,
+        description: this.invoiceDescription != null ? this.invoiceDescription : this.invoice.description,
+        conditions: this.invoiceConditions != null ? this.invoiceConditions : this.invoice.conditions,
+        subTotal: this.invoiceSubTotal != 0 ? this.invoiceSubTotal : this.invoice.subTotal,
+        vatRate: this.invoiceVatRate != 0 ? this.invoiceVatRate : this.invoice.vatRate,
+        vatAmount: this.invoiceVatAmount != 0 ? this.invoiceVatAmount : this.invoice.vatAmount,
+        total: this.invoiceTotal != 0 ? this.invoiceTotal : this.invoice.total,
       });
     }
   }
@@ -114,6 +143,34 @@ export class InvoiceFormComponent implements OnInit {
         });
       });
     }
+  }
+
+  newCustomer() {
+    this.router.navigate(['/template/customer/new', {
+      invoiceAction : this.invoice.id === undefined ? 'new' : 'edit',
+      invoiceId : this.invoice.id,
+      invoiceDate : this.invoiceForm.value.date,
+      invoiceDescription : this.invoiceForm.value.description,
+      invoiceConditions : this.invoiceForm.value.conditions,
+      invoiceSubTotal : this.invoiceForm.value.subTotal,
+      invoiceVatAmount : this.invoiceForm.value.vatAmount,
+      invoiceVatRate : this.invoiceForm.value.vatRate,
+      invoiceTotal : this.invoiceForm.value.total,
+    }]);
+  }
+
+  editCustomer() {
+    this.router.navigate(['/template/customer/edit/' + this.invoice.customer.id, {
+      invoiceAction : this.invoice.id === undefined ? 'new' : 'edit',
+      invoiceId : this.invoice.id,
+      invoiceDate : this.invoiceForm.value.date,
+      invoiceDescription : this.invoiceForm.value.description,
+      invoiceConditions : this.invoiceForm.value.conditions,
+      invoiceSubTotal : this.invoiceForm.value.subTotal,
+      invoiceVatAmount : this.invoiceForm.value.vatAmount,
+      invoiceVatRate : this.invoiceForm.value.vatRate,
+      invoiceTotal : this.invoiceForm.value.total,
+    }]);  
   }
 
   print(): void {
