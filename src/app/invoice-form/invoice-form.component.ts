@@ -83,17 +83,23 @@ export class InvoiceFormComponent implements OnInit {
         });
       });
     } else {//Create mode
-      this.customerService.getcustomers().subscribe(customers => this.customers = customers);
-      this.invoiceForm.patchValue({
-        date: this.invoice.date,
-        customerId: this.customerId != 0 ? this.customerId : this.invoice.customer.id,
-        description: this.invoiceDescription != null ? this.invoiceDescription : this.invoice.description,
-        conditions: this.invoiceConditions != null ? this.invoiceConditions : this.invoice.conditions,
-        subTotal: this.invoiceSubTotal != 0 ? this.invoiceSubTotal : this.invoice.subTotal,
-        vatRate: this.invoiceVatRate != 0 ? this.invoiceVatRate : this.invoice.vatRate,
-        vatAmount: this.invoiceVatAmount != 0 ? this.invoiceVatAmount : this.invoice.vatAmount,
-        total: this.invoiceTotal != 0 ? this.invoiceTotal : this.invoice.total,
+      this.customerService.getcustomers().subscribe(customers => {
+        this.customers = customers
+        this.invoiceForm.patchValue({
+          date: this.invoiceDate != null ? this.invoiceDate : this.invoice.date,
+          customerId: this.customerId != 0 ? this.customerId : this.invoice.customer.id,
+          description: this.invoiceDescription != null ? this.invoiceDescription : this.invoice.description,
+          conditions: this.invoiceConditions != null ? this.invoiceConditions : this.invoice.conditions,
+          subTotal: this.invoiceSubTotal != 0 ? this.invoiceSubTotal : this.invoice.subTotal,
+          vatRate: this.invoiceVatRate != 0 ? this.invoiceVatRate : this.invoice.vatRate,
+          vatAmount: this.invoiceVatAmount != 0 ? this.invoiceVatAmount : this.invoice.vatAmount,
+          total: this.invoiceTotal != 0 ? this.invoiceTotal : this.invoice.total,
+        });
+        if(this.customerId != 0){
+          this.customerService.getcustomer(this.customerId).subscribe(customer => this.invoice.customer = customer);
+        }
       });
+
     }
   }
 
