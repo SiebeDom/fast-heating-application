@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Customer } from '../model/customer';
-import { CustomerType } from '../model/customerType';
 import { CustomerService } from '../service/customer.service';
 
 @Component({
@@ -32,7 +31,7 @@ export class CustomerFormComponent {
   pad = "000";
   invoiceAction: string;
   invoiceId: number;
-  invoiceDate: Date;
+  invoiceDate: string;
   invoiceDescription: string;
   invoiceConditions: string;
   invoiceSubTotal: number;
@@ -51,7 +50,7 @@ export class CustomerFormComponent {
     let id = this.route.snapshot.paramMap.get('id');
     this.invoiceAction = this.route.snapshot.paramMap.get('invoiceAction');
     this.invoiceId = +this.route.snapshot.paramMap.get('invoiceId');
-    this.invoiceDate = this.route.snapshot.paramMap.get('invoiceDate') != null ? new Date(this.route.snapshot.paramMap.get('invoiceDate')): null;
+    this.invoiceDate = this.route.snapshot.paramMap.get('invoiceDate');
     this.invoiceDescription = this.route.snapshot.paramMap.get('invoiceDescription');
     this.invoiceConditions = this.route.snapshot.paramMap.get('invoiceConditions');
     this.invoiceSubTotal = +this.route.snapshot.paramMap.get('invoiceSubTotal');
@@ -113,30 +112,16 @@ export class CustomerFormComponent {
   }
 
   returnToInvoice() {
-    if(this.invoiceAction == 'edit'){
-      this.router.navigate(['/template/invoice/edit/' + this.invoiceId, {
-        customerId : this.customer.id,
-        invoiceDate : this.invoiceDate,
-        invoiceDescription : this.invoiceDescription,
-        invoiceConditions : this.invoiceConditions,
-        invoiceSubTotal : this.invoiceSubTotal,
-        invoiceVatAmount : this.invoiceVatAmount,
-        invoiceVatRate : this.invoiceVatRate,
-        invoiceTotal : this.invoiceTotal,
-      }]); 
-    }
-    if(this.invoiceAction == 'new'){
-      this.router.navigate(['/template/invoice/new/', {
-        customerId : this.customer.id,
-        invoiceDate : this.invoiceDate,
-        invoiceDescription : this.invoiceDescription,
-        invoiceConditions : this.invoiceConditions,
-        invoiceSubTotal : this.invoiceSubTotal,
-        invoiceVatAmount : this.invoiceVatAmount,
-        invoiceVatRate : this.invoiceVatRate,
-        invoiceTotal : this.invoiceTotal,
-      }]); 
-    }
+    this.router.navigate(['/template/invoice/' + this.invoiceAction + '/' + (this.invoiceAction === 'new' ? '' : this.invoiceId), {
+      customerId: this.customer.id,
+      invoiceDate: this.invoiceDate,
+      invoiceDescription: this.invoiceDescription,
+      invoiceConditions: this.invoiceConditions,
+      invoiceSubTotal: this.invoiceSubTotal,
+      invoiceVatAmount: this.invoiceVatAmount,
+      invoiceVatRate: this.invoiceVatRate,
+      invoiceTotal: this.invoiceTotal,
+    }]);
   }
 
   delete(): void {
