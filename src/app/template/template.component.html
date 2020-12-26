@@ -8,8 +8,10 @@
       <a mat-list-item href="#" routerLink="/template/dashboard">Startpagina</a>
       <a mat-list-item href="#" routerLink="/template/customer/list">Klanten</a>
       <a mat-list-item href="#" routerLink="/template/customer/new">Nieuwe klant</a>
-      <a mat-list-item href="#" routerLink="/template/invoice/list">Facturen</a>
-      <a mat-list-item href="#" routerLink="/template/invoice/new">Nieuwe factuur</a>
+      <a mat-list-item href="#" routerLink="/template/invoice/list" [queryParams]="{type: 'Invoice'}">Facturen</a>
+      <a mat-list-item href="#" routerLink="/template/invoice/new" [queryParams]="{type: 'Invoice'}">Nieuwe factuur</a>
+      <a mat-list-item href="#" routerLink="/template/invoice/list" [queryParams]="{type: 'CreditNote'}">Credit notas</a>
+      <a mat-list-item href="#" routerLink="/template/invoice/new" [queryParams]="{type: 'CreditNote'}">Nieuwe credit nota</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

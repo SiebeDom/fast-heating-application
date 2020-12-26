@@ -1,6 +1,5 @@
 import { Customer } from './customer';
 import { VatRate } from './vatRate';
-import { PaymentMethod } from './paymentMethod';
 import { InvoiceType } from './invoiceType';
 
 export class Invoice {
@@ -9,7 +8,6 @@ export class Invoice {
   type: InvoiceType;
   description: string;
   conditions?: string;
-  paymentMethod?: PaymentMethod;
   customer: Customer;
   subTotal: number;
   vatRate: VatRate;

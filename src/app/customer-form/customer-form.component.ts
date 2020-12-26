@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Customer } from '../model/customer';
+import { InvoiceType } from '../model/invoiceType';
 import { CustomerService } from '../service/customer.service';
 
 @Component({
@@ -31,6 +32,7 @@ export class CustomerFormComponent {
   pad = "000";
   invoiceAction: string;
   invoiceId: number;
+  invoiceType: InvoiceType;
   invoiceDate: string;
   invoiceDescription: string;
   invoiceConditions: string;
@@ -50,6 +52,7 @@ export class CustomerFormComponent {
     let id = this.route.snapshot.paramMap.get('id');
     this.invoiceAction = this.route.snapshot.paramMap.get('invoiceAction');
     this.invoiceId = +this.route.snapshot.paramMap.get('invoiceId');
+    this.invoiceType = this.route.snapshot.paramMap.get('invoiceType') === InvoiceType.INVOICE ? InvoiceType.INVOICE : InvoiceType.CREDIT_NOTE;
     this.invoiceDate = this.route.snapshot.paramMap.get('invoiceDate');
     this.invoiceDescription = this.route.snapshot.paramMap.get('invoiceDescription');
     this.invoiceConditions = this.route.snapshot.paramMap.get('invoiceConditions');
@@ -114,6 +117,7 @@ export class CustomerFormComponent {
   returnToInvoice() {
     this.router.navigate(['/template/invoice/' + this.invoiceAction + '/' + (this.invoiceAction === 'new' ? '' : this.invoiceId), {
       customerId: this.customer.id,
+      invoiceType: this.invoiceType,
       invoiceDate: this.invoiceDate,
       invoiceDescription: this.invoiceDescription,
       invoiceConditions: this.invoiceConditions,

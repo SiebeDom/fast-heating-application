@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Invoice } from '../model/invoice';
+import { InvoiceType } from '../model/invoiceType';
 
 @Injectable({
   providedIn: 'root'
@@ -24,14 +25,30 @@ export class InvoiceService {
   getinvoices(): Observable<Invoice[]> {
     return this.http.get<Invoice[]>(this.invoicesUrl)
       .pipe(
+        map( invoices => invoices.filter(i => i.type===InvoiceType.INVOICE)),
         catchError(this.handleError<Invoice[]>('getinvoices', []))
+      );
+  }
+
+  getCreditNotes(): Observable<Invoice[]> {
+    return this.http.get<Invoice[]>(this.invoicesUrl)
+      .pipe(
+        map( invoices => invoices.filter(i => i.type===InvoiceType.CREDIT_NOTE)),
+        catchError(this.handleError<Invoice[]>('getCreditNotes', []))
       );
   }
 
   getInvoicesOfThisYear(): Observable<Invoice[]> {
     return this.http.get<Invoice[]>(this.invoicesUrl)
       .pipe(
-        map( invoices => invoices.filter(r => r.year==new Date().getFullYear()) )
+        map( invoices => invoices.filter(i => i.year===new Date().getFullYear() && i.type===InvoiceType.INVOICE))
+      );
+  }
+
+  getCreditNotesOfThisYear(): Observable<Invoice[]> {
+    return this.http.get<Invoice[]>(this.invoicesUrl)
+      .pipe(
+        map( invoices => invoices.filter(i => i.year===new Date().getFullYear() && i.type===InvoiceType.CREDIT_NOTE))
       );
   }
 

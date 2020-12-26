@@ -4,7 +4,6 @@ import { Customer } from './model/customer';
 import { CustomerType } from './model/customerType';
 import { Invoice } from './model/invoice';
 import { InvoiceType } from './model/invoiceType';
-import { PaymentMethod } from './model/paymentMethod';
 import { VatRate } from './model/vatRate';
 
 @Injectable({
@@ -19,8 +18,9 @@ export class InMemoryDataService implements InMemoryDbService {
       customerOne, customerTwo, customerThree
     ];
     const invoices = [
-      { id: 1, type: InvoiceType.INVOICE, date: new Date(), conditions: "Voorwaarden", description: "Omschrijving", paymentMethod: PaymentMethod.BANK_ACCOUNT, customer: customerOne, subTotal: 100, vatRate: VatRate.SIX, vatAmount: 6, total: 106, year: 2020, index: 1, number: 'F20 001'},
-      { id: 2, type: InvoiceType.INVOICE, date: new Date(), conditions: "Voorwaarden", description: "Omschrijving", paymentMethod: PaymentMethod.CREDIT_CARD, customer: customerTwo, subTotal: 100, vatRate: VatRate.SIX, vatAmount: 21, total: 121, year: 2020, index: 2, number: 'F20 002'},
+      { id: 1, type: InvoiceType.INVOICE, date: new Date(), conditions: "Voorwaarden", description: "Omschrijving", customer: customerOne, subTotal: 100, vatRate: VatRate.SIX, vatAmount: 6, total: 106, year: 2020, index: 1, number: 'F20 001'},
+      { id: 2, type: InvoiceType.INVOICE, date: new Date(), conditions: "Voorwaarden", description: "Omschrijving", customer: customerTwo, subTotal: 100, vatRate: VatRate.SIX, vatAmount: 21, total: 121, year: 2020, index: 2, number: 'F20 002'},
+      { id: 3, type: InvoiceType.CREDIT_NOTE, date: new Date(), conditions: "Voorwaarden", description: "Omschrijving", customer: customerTwo, subTotal: 100, vatRate: VatRate.SIX, vatAmount: 21, total: 121, year: 2020, index: 1, number: 'C20 001'},
     ];
     return { customers, invoices };
   }
