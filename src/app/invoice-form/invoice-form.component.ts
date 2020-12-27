@@ -22,8 +22,7 @@ export class InvoiceFormComponent implements OnInit {
   vatRate = VatRate;
   vatRates = Object.values(this.vatRate);
   pad = "000";
-  invoiceNumberLabel: string;
-  invoiceDateLabel: string;
+  typeLabel: string;
 
   invoiceForm = this.fb.group({
     number: [{ value: null, disabled: true }, Validators.required],
@@ -53,12 +52,10 @@ export class InvoiceFormComponent implements OnInit {
       let type = params['type'];
       if (type === InvoiceType.INVOICE) {
         this.type = InvoiceType.INVOICE;
-        this.invoiceNumberLabel = 'Factuur nummer';
-        this.invoiceDateLabel = 'Factuur datum';
+        this.typeLabel = 'Factuur';
       } else {
         this.type = InvoiceType.CREDIT_NOTE;
-        this.invoiceNumberLabel = 'Credit nota nummer';
-        this.invoiceDateLabel = 'Credit nota datum';
+        this.typeLabel = 'Credit nota';
       }
     });
     //Get data from the URL when returning from the customer form
@@ -260,6 +257,10 @@ export class InvoiceFormComponent implements OnInit {
 
   print(): void {
     this.router.navigate(['invoice/print/' + this.invoice.id]);
+  }
+
+  delete(): void {
+    this.invoiceService.deleteinvoice(this.invoice).subscribe();
   }
 
 }
