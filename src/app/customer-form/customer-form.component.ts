@@ -84,7 +84,7 @@ export class CustomerFormComponent {
     }
   }
 
-  save(): void {
+  save(returnToInvoiceForm:boolean): void {
     this.customer.type = this.customerForm.value.type;
     this.customer.name = this.customerForm.value.name;
     this.customer.taxNumber = this.customerForm.value.taxNumber;
@@ -98,7 +98,12 @@ export class CustomerFormComponent {
     this.customer.mobile = this.customerForm.value.mobile;
     //Edit mode
     if (this.customer.id != null) {
-      this.customerService.updatecustomer(this.customer).subscribe();
+      this.customerService.updatecustomer(this.customer).subscribe(()=>{
+          if(returnToInvoiceForm){
+            this.returnToInvoice();
+          }  
+        }
+      );
     } else {//Create mode
       this.customerService.getCustomersOfThisYear().subscribe(customers => {
         this.customer.year = new Date().getFullYear();
@@ -109,6 +114,9 @@ export class CustomerFormComponent {
           this.customerForm.patchValue({
             number: this.customer.number,
           });
+          if(returnToInvoiceForm){
+            this.returnToInvoice();
+          }  
         });
       });
     }

@@ -1,4 +1,4 @@
-<form [formGroup]="customerForm" (ngSubmit)="save()">
+<form [formGroup]="customerForm" (ngSubmit)="save(false)">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Klant informatie</mat-card-title>
@@ -116,8 +116,8 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">Bewaar</button>
-      <button mat-raised-button color="primary" (click)="returnToInvoice()">Terug naar formulier</button>
+      <button mat-raised-button color="primary" type="submit" *ngIf="this.invoiceAction === null">Bewaar</button>
+      <button mat-raised-button color="primary" (click)="save(true)" *ngIf="this.invoiceAction !== null">Terug naar factuur</button>
     </mat-card-actions>
   </mat-card>
 </form>
