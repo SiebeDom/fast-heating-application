@@ -191,6 +191,7 @@ export class InvoiceFormComponent implements OnInit {
   }
 
   save(): void {
+    console.log(this.invoiceForm.value.description);
     this.invoice.date = this.invoiceForm.value.date;
     this.invoice.type = this.type;
     this.invoice.description = this.invoiceForm.value.description;

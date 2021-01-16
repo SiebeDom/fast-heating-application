@@ -3,3 +3,7 @@ h2 {
   margin-block-end: 0.1m;
 }
 
+/* in the css file or in a style block */
+.angular-with-newlines {
+  white-space: pre-wrap;
+}

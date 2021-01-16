@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Customer } from '../model/customer';
+import { CustomerType } from '../model/customerType';
 import { InvoiceType } from '../model/invoiceType';
 import { CustomerService } from '../service/customer.service';
 
@@ -23,9 +24,11 @@ export class CustomerFormComponent {
     postalCode: [null, Validators.compose([
       Validators.required, Validators.minLength(4), Validators.maxLength(4)])
     ],
+    country: null,
     email: null,
     phone: null,
     mobile: null,
+    foreign: null,
   });
 
   customer: Customer;
@@ -73,14 +76,22 @@ export class CustomerFormComponent {
           houseNumber: this.customer.houseNumber,
           boxNumber: this.customer.boxNumber,
           postalCode: this.customer.postalCode,
+          country: this.customer.country,
           city: this.customer.city,
           email: this.customer.email,
           phone: this.customer.phone,
           mobile: this.customer.mobile,
+          foreign: this.customer.foreign,
         });
       });
     } else {//Create mode
       this.customer = new Customer();
+      this.customer.type = CustomerType.INDIVIDUAL;
+      this.customer.foreign = false;
+      this.customerForm.patchValue({
+        type: this.customer.type,
+        foreign: this.customer.foreign,
+      });
     }
   }
 
@@ -92,10 +103,12 @@ export class CustomerFormComponent {
     this.customer.houseNumber = this.customerForm.value.houseNumber;
     this.customer.boxNumber = this.customerForm.value.boxNumber;
     this.customer.postalCode = this.customerForm.value.postalCode;
+    this.customer.country = this.customerForm.value.country;
     this.customer.city = this.customerForm.value.city;
     this.customer.email = this.customerForm.value.email;
     this.customer.phone = this.customerForm.value.phone;
     this.customer.mobile = this.customerForm.value.mobile;
+    this.customer.foreign = this.customerForm.value.foreign;
     //Edit mode
     if (this.customer.id != null) {
       this.customerService.updatecustomer(this.customer).subscribe(()=>{
@@ -120,6 +133,13 @@ export class CustomerFormComponent {
         });
       });
     }
+  }
+
+  setForeign(checkboxValue: boolean) {
+    this.customer.foreign = checkboxValue;
+    this.customerForm.patchValue({
+      foreign: this.customer.foreign
+    });
   }
 
   returnToInvoice() {

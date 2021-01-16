@@ -14,7 +14,7 @@
         <div class="col">
           <mat-form-field class="full-width">
             <input matInput placeholder="Klant nummer" formControlName="number">
-        </mat-form-field>
+          </mat-form-field>
         </div>
       </div>
       <div class="row">
@@ -35,7 +35,18 @@
           </mat-form-field>
         </div>
       </div>
-      <div class="row" *ngIf="customerForm.controls['type'].value === 'Bedrijf'">
+      <div class="row" *ngIf="customerForm.controls['type'].value === 'Bedrijf' && customerForm.controls['foreign'].value === false">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <span matPrefix *ngIf="customerForm.controls['type'].value === 'Bedrijf' && customerForm.controls['foreign'].value === false">BE &nbsp;</span>
+            <input matInput placeholder="BTW nummer" [attr.maxlength]="customerForm.controls['foreign'].value === false ? '10' : null" formControlName="taxNumber">
+            <mat-error *ngIf="customerForm.controls['taxNumber'].hasError('required')">
+              TaxNumber is <strong>verplicht</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row" *ngIf="customerForm.controls['type'].value === 'Bedrijf' && customerForm.controls['foreign'].value === true">
         <div class="col">
           <mat-form-field class="full-width">
             <input matInput placeholder="BTW nummer" formControlName="taxNumber">
@@ -78,8 +89,7 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput #postalCode maxlength="4" placeholder="Postcode" type="number"
-              formControlName="postalCode">
+            <input matInput #postalCode maxlength="4" placeholder="Postcode" type="number" formControlName="postalCode">
             <mat-hint align="end">{{postalCode.value.length}} / 4</mat-hint>
             <mat-error *ngIf="customerForm.controls['postalCode'].hasError('required')">
               Postcode is <strong>verplicht</strong>
@@ -92,6 +102,13 @@
             <mat-error *ngIf="customerForm.controls['city'].hasError('required')">
               Gemeente is <strong>verplicht</strong>
             </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row" *ngIf="customerForm.controls['foreign'].value === true">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Land" formControlName="country">
           </mat-form-field>
         </div>
       </div>
@@ -114,10 +131,16 @@
           </mat-form-field>
         </div>
       </div>
+      <div class="row">
+        <div class="col">
+          <mat-checkbox formControlName="foreign" (change)="setForeign($event.checked)">Buitenlandse klant</mat-checkbox>
+        </div>
+      </div>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" type="submit" *ngIf="this.invoiceAction === null">Bewaar</button>
-      <button mat-raised-button color="primary" (click)="save(true)" *ngIf="this.invoiceAction !== null">Terug naar factuur</button>
+      <button mat-raised-button color="primary" (click)="save(true)" *ngIf="this.invoiceAction !== null">Terug naar
+        factuur</button>
     </mat-card-actions>
   </mat-card>
 </form>

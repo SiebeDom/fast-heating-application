@@ -3,7 +3,7 @@ import { CustomerType } from './customerType';
 
 export class Customer {
   readonly id: number;
-  type: CustomerType;
+  type: CustomerType = CustomerType.INDIVIDUAL;
   name: string;
   street: string;
   houseNumber: string;
@@ -17,6 +17,8 @@ export class Customer {
   year: number;
   index: number;
   number: string;
+  foreign: boolean = false;
+  country: string = "België"
 
   constructor(id?: number, type?: CustomerType, name?:string) {
     this.id = id;

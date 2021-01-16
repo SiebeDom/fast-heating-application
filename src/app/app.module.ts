@@ -28,6 +28,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { CustomerFormComponent } from './customer-form/customer-form.component';
 import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -70,6 +71,7 @@ import { InvoicePrintComponent } from './invoice-print/invoice-print.component';
     MatPaginatorModule,
     MatSortModule,
     MatInputModule,
+    MatCheckboxModule,
     MatSelectModule,
     MatRadioModule,
     ReactiveFormsModule,

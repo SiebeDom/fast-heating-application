@@ -110,7 +110,14 @@
     <td style="padding-left: 275px;">
       <b>{{invoice.customer.name}}<br />
         {{invoice.customer.street}} {{invoice.customer.houseNumber}} {{invoice.customer.boxNumber}}<br />
-        {{invoice.customer.postalCode}} {{invoice.customer.city}}</b>
+        {{invoice.customer.postalCode}} {{invoice.customer.city}}<br/>
+        {{invoice.customer.country}}</b>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="padding-left: 275px;">
+      {{invoice.customer.taxNumber}}
     </td>
   </tr>
   <tr>
@@ -118,9 +125,7 @@
   </tr>
   <tr>
     <td colspan="5">
-      <p style="height: 500px;">
-        {{invoice.description}}<br />
-      </p>
+      <p class="angular-with-newlines" style="height: 400px;">{{invoice.description}}<br /></p>
     </td>
   </tr>
   <tr>

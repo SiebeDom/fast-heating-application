@@ -4,13 +4,13 @@
 
 mat-card {
   min-width: 120px;
-  margin: 20px auto;
+  margin: 10px auto;
 }
 
 .mat-radio-button {
   margin-right: 16px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 0px;
+  margin-bottom: 15px;
 }
 
 .row {
