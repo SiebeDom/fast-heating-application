@@ -9,7 +9,7 @@ import { InvoiceService } from '../service/invoice.service';
   styleUrls: ['./invoice-print.component.css']
 })
 export class InvoicePrintComponent implements OnInit {
-  invoice: Invoice;
+  invoice: Invoice = new Invoice();
 
   constructor(private invoiceService: InvoiceService,
     private route: ActivatedRoute) { }

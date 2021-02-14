@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomerDetailComponent } from './customer-detail.component';
 
 describe('CustomerDetailComponent', () => {
@@ -8,7 +8,10 @@ describe('CustomerDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CustomerDetailComponent ]
+      declarations: [ CustomerDetailComponent ],
+      imports: [
+        NoopAnimationsModule,
+      ]
     })
     .compileComponents();
   });

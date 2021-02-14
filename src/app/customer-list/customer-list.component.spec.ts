@@ -5,6 +5,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
 import { CustomerListComponent } from './customer-list.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('CustomerListComponent', () => {
   let component: CustomerListComponent;
@@ -18,6 +20,8 @@ describe('CustomerListComponent', () => {
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
+        HttpClientTestingModule,
+        RouterTestingModule
       ]
     }).compileComponents();
   }));

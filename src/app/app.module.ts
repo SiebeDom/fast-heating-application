@@ -37,6 +37,7 @@ import { InvoiceFormComponent } from './invoice-form/invoice-form.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { InvoiceListComponent } from './invoice-list/invoice-list.component';
 import { InvoicePrintComponent } from './invoice-print/invoice-print.component';
+import { ActivatedRoute } from '@angular/router';
 
 @NgModule({
   declarations: [

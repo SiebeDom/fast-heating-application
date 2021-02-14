@@ -6,8 +6,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from "@angular/router/testing";
 
 import { CustomerFormComponent } from './customer-form.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 describe('CustomerFormComponent', () => {
   let component: CustomerFormComponent;
@@ -24,6 +28,10 @@ describe('CustomerFormComponent', () => {
         MatInputModule,
         MatRadioModule,
         MatSelectModule,
+        MatMenuModule,
+        MatCheckboxModule,
+        HttpClientTestingModule,
+        RouterTestingModule
       ]
     }).compileComponents();
   }));

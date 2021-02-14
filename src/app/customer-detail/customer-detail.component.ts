@@ -8,7 +8,7 @@ import { Customer } from '../model/customer';
 })
 export class CustomerDetailComponent implements OnInit {
   @Input()
-  customer: Customer;
+  customer: Customer = new Customer();
   
   constructor() { }
 
