@@ -60,7 +60,7 @@ export class InvoiceFormComponent implements OnInit {
     });
     //Get data from the URL when returning from the customer form
     let customerId = +this.route.snapshot.paramMap.get('customerId');
-    let invoiceType = this.route.snapshot.paramMap.get('invoiceType')===InvoiceType.INVOICE ? InvoiceType.INVOICE : InvoiceType.CREDIT_NOTE;
+    let invoiceType = this.route.snapshot.paramMap.get('type')===InvoiceType.INVOICE ? InvoiceType.INVOICE : InvoiceType.CREDIT_NOTE;
     let invoiceDate = this.route.snapshot.paramMap.get('invoiceDate') != null ? new Date(this.route.snapshot.paramMap.get('invoiceDate')) : null;
     let invoiceDescription = this.route.snapshot.paramMap.get('invoiceDescription');
     let invoiceConditions = this.route.snapshot.paramMap.get('invoiceConditions');
@@ -70,7 +70,7 @@ export class InvoiceFormComponent implements OnInit {
     let invoiceTotal = +this.route.snapshot.paramMap.get('invoiceTotal');
 
     //Get a list of all the customers to be shown in the dropdown
-    this.customerService.getcustomers().subscribe(customers => {
+    this.customerService.getCustomers().subscribe(customers => {
       this.customers = customers;
     });
 
@@ -105,7 +105,7 @@ export class InvoiceFormComponent implements OnInit {
       vatAmount: invoice.vatAmount,
       total: invoice.total,
     });
-    this.customerService.getcustomer(invoice.customer.id).subscribe(customer => this.customer = customer);
+    this.customerService.getCustomer(invoice.customer.id).subscribe(customer => this.customer = customer);
   }
 
   /**
@@ -126,7 +126,7 @@ export class InvoiceFormComponent implements OnInit {
       this.invoiceForm.patchValue({
         customerId: customerId
       })
-      this.customerService.getcustomer(customerId).subscribe(customer => this.customer = customer);
+      this.customerService.getCustomer(customerId).subscribe(customer => this.customer = customer);
     }
     if (invoiceType != null) {
       this.type = invoiceType;
@@ -169,7 +169,7 @@ export class InvoiceFormComponent implements OnInit {
   }
 
   selectCustomer(event) {
-    this.customerService.getcustomer(event.source.value).subscribe(customer => this.customer = customer);
+    this.customerService.getCustomer(event.source.value).subscribe(customer => this.customer = customer);
   }
 
   selectVatRate(event) {

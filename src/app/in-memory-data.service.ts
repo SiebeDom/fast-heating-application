@@ -15,8 +15,9 @@ export class InMemoryDataService implements InMemoryDbService {
     var customerTwo = { id: 2, type: CustomerType.INDIVIDUAL, name: 'Achter Voor', street: 'Streetname', houseNumber: '32', boxNumber: 'a', postalCode: '2000', city: 'Antwerpen', phone: '035474748', mobile: '0478777855', email: 'dummy.test@gmail.com', year: 2020, index: 2, number: 'K20 002' };
     var customerThree = { id: 3, type: CustomerType.COMPANY, name: 'Bedrijf', taxNumber: '0123456789', street: 'Straat', houseNumber: '100', postalCode: '9000', city: 'Gent', phone: '035474748', mobile: '0478777855', email: 'dummy.test@gmail.com', year: 2020, index: 3, number: 'K20 003', foreign: false };
     var customerFour = { id: 4, type: CustomerType.COMPANY, name: 'Buitenlands', taxNumber: 'NL X 325478745744', street: 'Straat', houseNumber: '100', postalCode: '9000', city: 'Gent', country: 'Nederland', phone: '035474748', mobile: '0478777855', email: 'dummy.test@gmail.com', year: 2020, index: 4, number: 'K20 004', foreign: true };
+    var customerFive = { id: 5, type: CustomerType.COMPANY, name: 'Cust 2021', taxNumber: 'NL X 325478745744', street: 'Straat', houseNumber: '100', postalCode: '9000', city: 'Gent', country: 'Nederland', phone: '035474748', mobile: '0478777855', email: '2021.test@gmail.com', year: 2021, index: 1, number: 'K21 001', foreign: true };
     const customers = [
-      customerOne, customerTwo, customerThree, customerFour
+      customerOne, customerTwo, customerThree, customerFour, customerFive
     ];
     const invoices = [
       { id: 1, type: InvoiceType.INVOICE, date: new Date(), conditions: "Voorwaarden", description: "Omschrijving", customer: customerOne, subTotal: 100, vatRate: VatRate.SIX, vatAmount: 6, total: 106, year: 2020, index: 1, number: 'F20 001'},
