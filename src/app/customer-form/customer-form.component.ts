@@ -65,7 +65,7 @@ export class CustomerFormComponent {
     this.invoiceTotal = +this.route.snapshot.paramMap.get('invoiceTotal');
     //Edit mode
     if (id != null) {
-      this.customerService.getcustomer(+id).subscribe(customer => {
+      this.customerService.getCustomer(+id).subscribe(customer => {
         this.customer = customer;
         this.customerForm.patchValue({
           number: this.customer.number,
@@ -111,7 +111,7 @@ export class CustomerFormComponent {
     this.customer.foreign = this.customerForm.value.foreign;
     //Edit mode
     if (this.customer.id != null) {
-      this.customerService.updatecustomer(this.customer).subscribe(()=>{
+      this.customerService.updateCustomer(this.customer).subscribe(()=>{
           if(returnToInvoiceForm){
             this.returnToInvoice();
           }  
@@ -157,6 +157,6 @@ export class CustomerFormComponent {
   }
 
   delete(): void {
-    this.customerService.deletecustomer(this.customer).subscribe();
+    this.customerService.deleteCustomer(this.customer).subscribe();
   }
 }

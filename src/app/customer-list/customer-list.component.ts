@@ -27,7 +27,7 @@ export class CustomerListComponent implements AfterViewInit {
   }
 
   getcustomers(): void {
-    this.customerService.getcustomers()
+    this.customerService.getCustomers()
       .subscribe(customers => {
         this.dataSource = new CustomerListDataSource(customers);
         this.dataSource.sort = this.sort;
