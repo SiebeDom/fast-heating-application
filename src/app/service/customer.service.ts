@@ -11,7 +11,7 @@ import { Customer } from '../model/customer';
 })
 export class CustomerService {
 
-  private customersUrl = 'api/customers';  // URL to web api
+  private customersUrl = 'http://localhost:8080/customers';  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -22,14 +22,14 @@ export class CustomerService {
 
   /** GET customers from the server */
   getcustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.customersUrl)
+    return this.http.get<Customer[]>(`${this.customersUrl}`)
       .pipe(
         catchError(this.handleError<Customer[]>('getcustomers', []))
       );
   }
 
   getCustomersOfThisYear(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.customersUrl)
+    return this.http.get<Customer[]>(`${this.customersUrl}`)
       .pipe(
         map( customers => customers.filter(r => r.year==new Date().getFullYear()) )
       );
@@ -60,7 +60,7 @@ export class CustomerService {
 
   /** POST: add a new customer to the server */
   addCustomer(customer: Customer): Observable<Customer> {
-    return this.http.post<Customer>(this.customersUrl, customer, this.httpOptions).pipe(
+    return this.http.post<Customer>(`${this.customersUrl}`, customer, this.httpOptions).pipe(
       tap((newCustomer: Customer) => console.log(`added customer w/ id=${newCustomer.id}`)),
       catchError(this.handleError<Customer>('addCustomer'))
     );
@@ -69,7 +69,7 @@ export class CustomerService {
   /** DELETE: delete the customer from the server */
   deletecustomer(customer: Customer | number): Observable<Customer> {
     const id = typeof customer === 'number' ? customer : customer.id;
-    const url = `${this.customersUrl}/${id}`;
+    const url = `${this.customersUrl}/delete/${id}`;
 
     return this.http.delete<Customer>(url, this.httpOptions).pipe(
       catchError(this.handleError<Customer>('deletecustomer'))
@@ -77,8 +77,8 @@ export class CustomerService {
   }
 
   /** PUT: update the customer on the server */
-  updatecustomer(customer: Customer): Observable<any> {
-    return this.http.put(this.customersUrl, customer, this.httpOptions).pipe(
+  updatecustomer(customer: Customer, id: Number): Observable<any> {
+    return this.http.put(`${this.customersUrl}/${id}`, customer, this.httpOptions).pipe(
       catchError(this.handleError<any>('updatecustomer'))
     );
   }

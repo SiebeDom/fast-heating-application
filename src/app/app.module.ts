@@ -66,9 +66,9 @@ import { ActivatedRoute } from '@angular/router';
     MatTableModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
+    //HttpClientInMemoryWebApiModule.forRoot(
+    //  InMemoryDataService, { dataEncapsulation: false }
+    //),
     MatPaginatorModule,
     MatSortModule,
     MatInputModule,

@@ -111,7 +111,7 @@ export class CustomerFormComponent {
     this.customer.foreign = this.customerForm.value.foreign;
     //Edit mode
     if (this.customer.id != null) {
-      this.customerService.updatecustomer(this.customer).subscribe(()=>{
+      this.customerService.updatecustomer(this.customer, this.customer.id).subscribe(()=>{
           if(returnToInvoiceForm){
             this.returnToInvoice();
           }  
