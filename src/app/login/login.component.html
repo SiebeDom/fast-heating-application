@@ -1,0 +1,19 @@
+<mat-card>
+    <h3>Meld u aan</h3>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+            <input matInput formControlName="userName" placeholder="Gebruikersnaam" />
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput formControlName="password" type="password" placeholder="Wachtwoord" />
+        </mat-form-field>
+
+        <button mat-raised-button color="accent" type="submit" [disabled]="form.invalid">
+            Log in
+        </button>
+
+        <mat-error class="server-error">{{ serverMessage }}</mat-error>
+    </form>
+</mat-card>
