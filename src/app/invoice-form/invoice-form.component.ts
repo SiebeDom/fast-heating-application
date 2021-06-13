@@ -76,7 +76,7 @@ export class InvoiceFormComponent implements OnInit {
 
     //Edit mode
     if (id != null) {
-      this.invoiceService.getinvoice(+id).subscribe(invoice => {
+      this.invoiceService.getInvoice(+id).subscribe(invoice => {
         this.invoice = invoice;
         this.fillForm(invoice);
         this.restoreUnsavedData(customerId, invoiceType, invoiceDate, invoiceDescription, invoiceConditions, invoiceSubTotal, invoiceVatRate, invoiceVatAmount, invoiceTotal);
@@ -261,7 +261,7 @@ export class InvoiceFormComponent implements OnInit {
   }
 
   delete(): void {
-    this.invoiceService.deleteinvoice(this.invoice).subscribe();
+    this.invoiceService.deleteInvoice(this.invoice).subscribe();
   }
 
 }

@@ -22,7 +22,7 @@ export class InvoiceService {
     private http: HttpClient) { }
 
   /** GET invoices from the server */
-  getinvoices(): Observable<Invoice[]> {
+  getInvoices(): Observable<Invoice[]> {
     return this.http.get<Invoice[]>(this.invoicesUrl)
       .pipe(
         map( invoices => invoices.filter(i => i.type===InvoiceType.INVOICE)),
@@ -53,7 +53,7 @@ export class InvoiceService {
   }
 
   /** GET invoice by id. Return `undefined` when id not found */
-  getinvoiceNo404<Data>(id: number): Observable<Invoice> {
+  getInvoiceNo404<Data>(id: number): Observable<Invoice> {
     const url = `${this.invoicesUrl}/?id=${id}`;
     return this.http.get<Invoice[]>(url)
       .pipe(
@@ -66,7 +66,7 @@ export class InvoiceService {
   }
 
   /** GET invoice by id. Will 404 if id not found */
-  getinvoice(id: number): Observable<Invoice> {
+  getInvoice(id: number): Observable<Invoice> {
     const url = `${this.invoicesUrl}/${id}`;
     return this.http.get<Invoice>(url).pipe(
       tap((newInvoice: Invoice) => console.log(`get invoice w/ id=${newInvoice.customer.name}`)),
@@ -85,7 +85,7 @@ export class InvoiceService {
   }
 
   /** DELETE: delete the invoice from the server */
-  deleteinvoice(invoice: Invoice | number): Observable<Invoice> {
+  deleteInvoice(invoice: Invoice | number): Observable<Invoice> {
     const id = typeof invoice === 'number' ? invoice : invoice.id;
     const url = `${this.invoicesUrl}/${id}`;
 

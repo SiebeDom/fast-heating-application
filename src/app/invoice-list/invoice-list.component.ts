@@ -31,7 +31,7 @@ export class InvoiceListComponent implements AfterViewInit {
   }
 
   getinvoices(): void {
-    this.invoiceService.getinvoices()
+    this.invoiceService.getInvoices()
       .subscribe(invoices => {
         this.dataSource = new InvoiceListDataSource(invoices);
         this.dataSource.sort = this.sort;

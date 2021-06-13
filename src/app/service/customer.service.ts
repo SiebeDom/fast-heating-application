@@ -21,7 +21,7 @@ export class CustomerService {
     private http: HttpClient) { }
 
   /** GET customers from the server */
-  getcustomers(): Observable<Customer[]> {
+  getCustomers(): Observable<Customer[]> {
     return this.http.get<Customer[]>(`${this.customersUrl}`)
       .pipe(
         catchError(this.handleError<Customer[]>('getcustomers', []))
@@ -36,7 +36,7 @@ export class CustomerService {
   }
 
   /** GET customer by id. Return `undefined` when id not found */
-  getcustomerNo404<Data>(id: number): Observable<Customer> {
+  getCustomerNo404<Data>(id: number): Observable<Customer> {
     const url = `${this.customersUrl}/?id=${id}`;
     return this.http.get<Customer[]>(url)
       .pipe(
@@ -49,7 +49,7 @@ export class CustomerService {
   }
 
   /** GET customer by id. Will 404 if id not found */
-  getcustomer(id: number): Observable<Customer> {
+  getCustomer(id: number): Observable<Customer> {
     const url = `${this.customersUrl}/${id}`;
     return this.http.get<Customer>(url).pipe(
       catchError(this.handleError<Customer>(`getcustomer id=${id}`))
@@ -67,7 +67,7 @@ export class CustomerService {
   }
 
   /** DELETE: delete the customer from the server */
-  deletecustomer(customer: Customer | number): Observable<Customer> {
+  deleteCustomer(customer: Customer | number): Observable<Customer> {
     const id = typeof customer === 'number' ? customer : customer.id;
     const url = `${this.customersUrl}/delete/${id}`;
 
@@ -77,7 +77,7 @@ export class CustomerService {
   }
 
   /** PUT: update the customer on the server */
-  updatecustomer(customer: Customer, id: Number): Observable<any> {
+  updateCustomer(customer: Customer, id: Number): Observable<any> {
     return this.http.put(`${this.customersUrl}/${id}`, customer, this.httpOptions).pipe(
       catchError(this.handleError<any>('updatecustomer'))
     );

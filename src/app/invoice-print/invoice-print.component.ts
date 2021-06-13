@@ -17,7 +17,7 @@ export class InvoicePrintComponent implements OnInit {
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
     if (id != null) {
-      this.invoiceService.getinvoice(+id).subscribe(invoice => {
+      this.invoiceService.getInvoice(+id).subscribe(invoice => {
         this.invoice = invoice;
       })
     }
