@@ -12,6 +12,7 @@
       <a mat-list-item href="#" routerLink="/template/invoice/new" [queryParams]="{type: 'Invoice'}">Nieuwe factuur</a>
       <a mat-list-item href="#" routerLink="/template/invoice/list" [queryParams]="{type: 'CreditNote'}">Credit notas</a>
       <a mat-list-item href="#" routerLink="/template/invoice/new" [queryParams]="{type: 'CreditNote'}">Nieuwe credit nota</a>
+      <a mat-list-item href="#" (click)="logout()">Logout</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
