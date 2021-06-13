@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
@@ -38,6 +38,8 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
 import { InvoiceListComponent } from './invoice-list/invoice-list.component';
 import { InvoicePrintComponent } from './invoice-print/invoice-print.component';
 import { ActivatedRoute } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { SecurityInterceptor } from './service/security.interceptor';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { ActivatedRoute } from '@angular/router';
     CustomerDetailComponent,
     InvoiceListComponent,
     InvoicePrintComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,7 +83,7 @@ import { ActivatedRoute } from '@angular/router';
     MatDatepickerModule,
     MatNativeDateModule,
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: SecurityInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
