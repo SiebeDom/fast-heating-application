@@ -12,7 +12,7 @@ import { InvoiceType } from '../model/invoiceType';
 })
 export class InvoiceService {
 
-  private invoicesUrl = 'api/invoices';  // URL to web api
+  private invoicesUrl = 'http://localhost:8080/invoices';  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -96,7 +96,7 @@ export class InvoiceService {
 
   /** PUT: update the invoice on the server */
   updateInvoice(invoice: Invoice): Observable<any> {
-    return this.http.put(this.invoicesUrl, invoice, this.httpOptions).pipe(
+    return this.http.put(`${this.invoicesUrl}/${invoice.id}`, invoice, this.httpOptions).pipe(
       catchError(this.handleError<any>('updateinvoice'))
     );
   }
