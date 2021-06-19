@@ -60,7 +60,7 @@ export class InvoiceFormComponent implements OnInit {
     });
     //Get data from the URL when returning from the customer form
     let customerId = +this.route.snapshot.paramMap.get('customerId');
-    let invoiceType = this.route.snapshot.paramMap.get('type')===InvoiceType.INVOICE ? InvoiceType.INVOICE : InvoiceType.CREDIT_NOTE;
+    let invoiceType = this.type
     let invoiceDate = this.route.snapshot.paramMap.get('invoiceDate') != null ? new Date(this.route.snapshot.paramMap.get('invoiceDate')) : null;
     let invoiceDescription = this.route.snapshot.paramMap.get('invoiceDescription');
     let invoiceConditions = this.route.snapshot.paramMap.get('invoiceConditions');
